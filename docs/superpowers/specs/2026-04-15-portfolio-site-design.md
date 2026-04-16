@@ -50,7 +50,7 @@ Personal portfolio and CV extension. One page that showcases who Raphael is, wha
 **Notes:**
 - Exact wording flexible — refine during content polish.
 - "Feel free to reach out" is the subtle collaboration signal. The explicit one lives in the footer.
-- No buttons, no CTAs. "Reach out" could be a soft inline link to email, or left to the footer entirely.
+- "Reach out" is a soft inline mailto link in the hero.
 - Visual treatment open (large type, portrait, pure text — decided in design phase).
 
 ---
@@ -96,7 +96,7 @@ A native iOS app that guides users through structured anxiety management exercis
 
 **Notes:**
 - Descriptions emphasize the problem solved and the fact it shipped, not the tech stack.
-- Store links where live (Chrome Web Store, Mac App Store, App Store).
+- Store links where live (Chrome Web Store, Mac App Store, App Store). Projects without a public link simply omit the link — no "Private" label or placeholder.
 - Visual hierarchy open (uniform cards vs. featured/compact mix — decided in design phase).
 
 ---
@@ -126,8 +126,9 @@ Various roles in design-adjacent sales. Learned how design products get specifie
 Architecture and interior design. Learned to think about how people move through spaces, how operations shape physical layouts, and how constraints drive design decisions.
 
 **Notes:**
-- Vertical timeline format. First two entries are concurrent (both present) — visual treatment should communicate this.
+- Vertical timeline format. First two entries are concurrent (both present) — visual treatment should communicate this (e.g., parallel branches, offset markers, or a shared "now" bracket). Exact approach decided in design phase.
 - Timeline is lean — 1–2 sentences each. The story is in the arc, not the details.
+- Instagram link in the footer is intentional (personal Instagram, separate from the cut Personality section).
 
 ---
 
@@ -189,6 +190,23 @@ Architecture and interior design. Learned to think about how people move through
 **Notes:**
 - No contact form, no CTA buttons. Two-liner + plain links.
 - Social links could be icons, text, or a mix — design phase decision.
+- Email address, LinkedIn URL, Instagram URL, and last name are outstanding content deliverables (see Content Status).
+
+---
+
+## Responsive Behavior
+
+Mobile-first responsive layout expected. Specifics (breakpoints, reflow behavior for logo grid, gallery, timeline) deferred to design phase. The site must be fully usable and readable on mobile — no horizontal scrolling, no clipped content.
+
+---
+
+## Metadata & SEO
+
+Basic metadata required:
+- Page title and meta description
+- Open Graph tags (title, description, image) for link previews on LinkedIn, Slack, etc.
+- Favicon
+- OG image — sourced or designed during design phase
 
 ---
 
@@ -216,6 +234,8 @@ The site should never include:
 | Personality/travel imagery (revisit if it fits the story) | Future |
 | Design thinking write-ups for design projects | Future |
 | Framer Motion animation specifics | Design |
+| Responsive breakpoints and reflow behavior | Design |
+| OG image design/sourcing | Design |
 
 ---
 
@@ -229,4 +249,4 @@ The site should never include:
 | History | Timeline drafted, new intro written | Confirm copy |
 | Selected Design Work | Defined | Select 4 projects, source images, write captions |
 | Tools & Technologies | Tool list drafted | Confirm final list, source SVGs |
-| Footer | Draft complete | Confirm final social/contact links |
+| Footer | Draft complete | Provide email address, LinkedIn URL, Instagram URL, last name |
