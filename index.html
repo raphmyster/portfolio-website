@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Raphael Attar — mysterscale</title>
+  <meta name="description" content="Raphael Attar — AI-native builder. Portfolio of shipped software, automations, and products." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand" aria-label="mysterscale">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M20 3 L35 12 L35 28 L20 37 L5 28 L5 12 Z" stroke="currentColor" stroke-width="1.5"/>
+        <rect x="15" y="13" width="2" height="14" fill="var(--accent)"/>
+        <rect x="19" y="11" width="2" height="18" fill="var(--accent)"/>
+        <rect x="23" y="13" width="2" height="14" fill="var(--accent)"/>
+      </svg>
+      <span class="brand-name">mysterscale<span class="dot">.</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#focus" data-num="01">Focus</a>
+      <a href="#projects" data-num="02">Projects</a>
+      <a href="#history" data-num="03">History</a>
+      <a href="#gallery" data-num="04">Design</a>
+      <a href="#tools" data-num="05">Tools</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-time"><span class="pulse"></span><span id="nav-clock">--:--:-- TOR</span></span>
+    </div>
+  </div>
+</nav>
+
+<main class="shell" id="top">
+
+  <section class="hero section" style="border-top:none" data-screen-label="01 Hero">
+    <div class="hero-canvas" id="hex-mount"></div>
+
+    <div class="hero-content">
+      <div>
+        <div class="hero-eyebrow r-fade">
+          <span class="line"></span>
+          <span>RAPHAEL ATTAR / PORTFOLIO &mdash; 2026</span>
+        </div>
+        <h1 class="hero-title split-words">
+          Hi, I'm Raphael.<span class="hand" aria-hidden="true"> 👋</span>
+        </h1>
+      </div>
+      <div>
+        <p class="hero-sub split-words">
+          I build software, automations, and products with AI — most of them solving problems I ran into myself. Currently doing marketing ops at Credit Sesame.
+        </p>
+        <p class="hero-sub" style="margin-top:18px">
+          Feel free to <a class="inline-mail" href="mailto:hello@mysterscale.com">reach out</a>.
+        </p>
+      </div>
+    </div>
+
+    <div id="hero-meta-mount"></div>
+
+    <div class="scroll-hint"><span>Scroll</span><span class="bar"></span></div>
+  </section>
+
+  <section id="focus" class="section" data-screen-label="02 Focus">
+    <div class="section-head">
+      <div class="chapter" data-parallax="0.12"><span class="num">01</span>CHAPTER</div>
+      <h2 class="section-title scramble reveal">What I'm Focused On</h2>
+    </div>
+    <div class="focus-body">
+      <div class="chapter" data-parallax="0.25">
+        <div>ESSAY</div>
+        <div style="margin-top:6px;color:var(--fg-faint)">2026 / A</div>
+      </div>
+      <div class="focus-prose">
+        <p class="split-words reveal">
+          Right now I'm spending most of my time thinking about how AI changes what one person can build. The barrier between <span class="hl">"I have an idea"</span> and <span class="hl">"I have a working product"</span> has collapsed in the last two years, and I find that genuinely exciting — not just for what it means for software, but for what it means for the kinds of problems individuals can now tackle on their own.
+        </p>
+        <p class="split-words reveal dim">
+          I'm drawn to problems that sit at the intersection of design, operations, and code. The interesting work, for me, is rarely just a technical challenge — it's understanding why a workflow is broken in the first place, who it's broken for, and what the right shape of the solution looks like. Then building it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section" data-screen-label="03 Projects">
+    <div class="section-head">
+      <div class="chapter" data-parallax="0.12"><span class="num">02</span>CHAPTER</div>
+      <h2 class="section-title scramble reveal">Recent Projects</h2>
+    </div>
+    <div id="projects-mount"></div>
+  </section>
+
+  <section id="history" class="section" data-screen-label="04 History">
+    <div class="section-head">
+      <div class="chapter" data-parallax="0.12"><span class="num">03</span>CHAPTER</div>
+      <h2 class="section-title scramble reveal">History</h2>
+    </div>
+    <p class="timeline-intro split-words reveal">
+      A varied path — and the combination is the point. <em>Design</em> taught me how people actually use things, <em>ops</em> taught me how systems actually work, and <em>building with AI</em> lets me put both to use.
+    </p>
+    <div id="timeline-mount"></div>
+  </section>
+
+  <section id="gallery" class="section" data-screen-label="05 Gallery">
+    <div class="section-head">
+      <div class="chapter" data-parallax="0.12"><span class="num">04</span>CHAPTER</div>
+      <h2 class="section-title scramble reveal">Selected Design Work</h2>
+    </div>
+    <div id="gallery-mount"></div>
+  </section>
+
+  <section id="tools" class="section" data-screen-label="06 Tools">
+    <div class="section-head">
+      <div class="chapter" data-parallax="0.12"><span class="num">05</span>CHAPTER</div>
+      <h2 class="section-title scramble reveal">Tools &amp; Technologies</h2>
+    </div>
+    <div class="tools-wrap" data-layout="field">
+      <div class="tools-legend r-stagger reveal">
+        <span class="item" data-cat="ai"><span class="swatch"></span>AI &amp; Development</span>
+        <span class="item" data-cat="auto"><span class="swatch"></span>Automation &amp; Workflows</span>
+        <span class="item" data-cat="ops"><span class="swatch"></span>Marketing &amp; Operations</span>
+        <span class="item" data-cat="design"><span class="swatch"></span>Design</span>
+      </div>
+      <div id="tools-field-mount"></div>
+    </div>
+  </section>
+
+  <footer id="footer" class="footer" data-screen-label="07 Footer">
+    <p class="footer-big split-words reveal">
+      If you're working on something interesting — AI, automation, design, or otherwise — I'd love to <a href="mailto:hello@mysterscale.com">hear about it.</a>
+    </p>
+
+    <div class="footer-grid">
+      <div class="f-col"><small>Email</small><a href="mailto:hello@mysterscale.com">hello@mysterscale.com</a></div>
+      <div class="f-col"><small>LinkedIn</small><a href="#" target="_blank" rel="noopener">/in/raphaelattar</a></div>
+      <div class="f-col"><small>GitHub</small><a href="https://github.com/raphmyster" target="_blank" rel="noopener">@raphmyster</a></div>
+      <div class="f-col"><small>Instagram</small><a href="#" target="_blank" rel="noopener">@raphaelattar</a></div>
+    </div>
+
+    <div class="footer-base">
+      <div class="mark">
+        <svg width="14" height="14" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <path d="M20 3 L35 12 L35 28 L20 37 L5 28 L5 12 Z" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="19" y="11" width="2" height="18" fill="var(--accent)"/>
+        </svg>
+        <span>© 2026 Raphael Attar · mysterscale</span>
+      </div>
+      <div>Built with care · Toronto</div>
+    </div>
+  </footer>
+</main>
+
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+
+<script src="anim.js"></script>
+<script type="text/babel" data-presets="react" src="hex.jsx"></script>
+<script type="text/babel" data-presets="react" src="projects.jsx"></script>
+<script type="text/babel" data-presets="react" src="tools.jsx"></script>
+<script type="text/babel" data-presets="react" src="hero-meta.jsx"></script>
+<script type="text/babel" data-presets="react" src="gallery.jsx"></script>
+<script type="text/babel" data-presets="react" src="timeline.jsx"></script>
+
+<script type="text/babel" data-presets="react">
+  const hexEl = document.getElementById("hex-mount");
+  if (hexEl) ReactDOM.createRoot(hexEl).render(<HexCenterpiece />);
+
+  const heroMetaEl = document.getElementById("hero-meta-mount");
+  if (heroMetaEl) ReactDOM.createRoot(heroMetaEl).render(<HeroMeta />);
+
+  const projEl = document.getElementById("projects-mount");
+  if (projEl) ReactDOM.createRoot(projEl).render(
+    <div className="projects-list" data-layout="grid">
+      {PROJECTS.map((p, i) => <ProjectCard key={i} project={p} idx={i} />)}
+    </div>
+  );
+
+  const tEl = document.getElementById("timeline-mount");
+  if (tEl) ReactDOM.createRoot(tEl).render(<Timeline />);
+
+  const gEl = document.getElementById("gallery-mount");
+  if (gEl) ReactDOM.createRoot(gEl).render(<Gallery />);
+
+  const tfEl = document.getElementById("tools-field-mount");
+  if (tfEl) ReactDOM.createRoot(tfEl).render(<ToolsField />);
+
+  setTimeout(() => {
+    observeReveal();
+    observeSvgDraws();
+    bindParallax();
+    startClock();
+    heroWave();
+    const firstScramble = document.querySelector(".scramble");
+    if (firstScramble) {
+      firstScramble.classList.add("in");
+      scrambleElement(firstScramble);
+    }
+  }, 100);
+  setTimeout(() => { observeReveal(); }, 400);
+</script>
+
+</body>
+</html>
