@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Raphael Attar — mysterscale</title>
+  <title>Raphael Attar</title>
   <meta name="description" content="Raphael Attar — AI-native builder. Portfolio of shipped software, automations, and products." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,14 +14,14 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#top" class="brand" aria-label="mysterscale">
+    <a href="#top" class="brand" aria-label="raphael attar">
       <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <path d="M20 3 L35 12 L35 28 L20 37 L5 28 L5 12 Z" stroke="currentColor" stroke-width="1.5"/>
         <rect x="15" y="13" width="2" height="14" fill="var(--accent)"/>
         <rect x="19" y="11" width="2" height="18" fill="var(--accent)"/>
         <rect x="23" y="13" width="2" height="14" fill="var(--accent)"/>
       </svg>
-      <span class="brand-name">mysterscale<span class="dot">.</span></span>
+      <span class="brand-name">raphael attar<span class="dot">.</span></span>
     </a>
     <div class="nav-links">
       <a href="#focus" data-num="01">Focus</a>
@@ -39,8 +39,6 @@
 <main class="shell" id="top">
 
   <section class="hero section" style="border-top:none" data-screen-label="01 Hero">
-    <div class="hero-canvas" id="hex-mount"></div>
-
     <div class="hero-content">
       <div>
         <div class="hero-eyebrow r-fade">
@@ -56,7 +54,7 @@
           I build software, automations, and products with AI — most of them solving problems I ran into myself. Currently doing marketing ops at Credit Sesame.
         </p>
         <p class="hero-sub" style="margin-top:18px">
-          Feel free to <a class="inline-mail" href="mailto:hello@mysterscale.com">reach out</a>.
+          Feel free to <a class="inline-mail" href="mailto:raphaelattar25@gmail.com">reach out</a>.
         </p>
       </div>
     </div>
@@ -132,11 +130,11 @@
 
   <footer id="footer" class="footer" data-screen-label="07 Footer">
     <p class="footer-big split-words reveal">
-      If you're working on something interesting — AI, automation, design, or otherwise — I'd love to <a href="mailto:hello@mysterscale.com">hear about it.</a>
+      If you're working on something interesting — AI, automation, design, or otherwise — I'd love to <a href="mailto:raphaelattar25@gmail.com">hear about it.</a>
     </p>
 
     <div class="footer-grid">
-      <div class="f-col"><small>Email</small><a href="mailto:hello@mysterscale.com">hello@mysterscale.com</a></div>
+      <div class="f-col"><small>Email</small><a href="mailto:raphaelattar25@gmail.com">raphaelattar25@gmail.com</a></div>
       <div class="f-col"><small>LinkedIn</small><a href="#" target="_blank" rel="noopener">/in/raphaelattar</a></div>
       <div class="f-col"><small>GitHub</small><a href="https://github.com/raphmyster" target="_blank" rel="noopener">@raphmyster</a></div>
       <div class="f-col"><small>Instagram</small><a href="#" target="_blank" rel="noopener">@raphaelattar</a></div>
@@ -148,7 +146,7 @@
           <path d="M20 3 L35 12 L35 28 L20 37 L5 28 L5 12 Z" stroke="currentColor" stroke-width="1.5"/>
           <rect x="19" y="11" width="2" height="18" fill="var(--accent)"/>
         </svg>
-        <span>© 2026 Raphael Attar · mysterscale</span>
+        <span>© 2026 Raphael Attar</span>
       </div>
       <div>Built with care · Toronto</div>
     </div>
@@ -160,7 +158,6 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
 
 <script src="anim.js"></script>
-<script type="text/babel" data-presets="react" src="hex.jsx"></script>
 <script type="text/babel" data-presets="react" src="projects.jsx"></script>
 <script type="text/babel" data-presets="react" src="tools.jsx"></script>
 <script type="text/babel" data-presets="react" src="hero-meta.jsx"></script>
@@ -168,9 +165,6 @@
 <script type="text/babel" data-presets="react" src="timeline.jsx"></script>
 
 <script type="text/babel" data-presets="react">
-  const hexEl = document.getElementById("hex-mount");
-  if (hexEl) ReactDOM.createRoot(hexEl).render(<HexCenterpiece />);
-
   const heroMetaEl = document.getElementById("hero-meta-mount");
   if (heroMetaEl) ReactDOM.createRoot(heroMetaEl).render(<HeroMeta />);
 
