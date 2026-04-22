@@ -402,7 +402,7 @@ EOF
   2. `refactor(hero): remove decorative scroll hint`
   3. `refactor(hero): switch meta cell 04 from availability to focus signal`
   4. `refactor(footer): rework opening line to complement new hero CTA`
-- [ ] **Grep hygiene:** `grep -n "scroll-hint" index.html styles.css` returns nothing. `grep -n "Open to.*Conversations" hero-meta.jsx` returns nothing. `grep -n "mysterscale" .` (recursive from repo root) returns nothing.
+- [ ] **Grep hygiene:** `grep -n "scroll-hint" index.html styles.css` returns nothing. `grep -n "Open to.*Conversations" hero-meta.jsx` returns nothing. `grep -rn "mysterscale" .` (recursive from repo root) returns nothing — this is defensive hygiene from an earlier cleanup pass, not a requirement of this plan, but running it catches regressions.
 
 If any verification step fails, stop, leave the failing commit as-is, and surface the failure rather than trying to fix forward into a fifth commit.
 
