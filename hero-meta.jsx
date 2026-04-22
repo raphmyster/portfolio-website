@@ -4,7 +4,7 @@ const META_FACTS = [
   { k: "Based", v: "Toronto" },
   { k: "Role", v: "Builder / Ops" },
   { k: "Now", v: "Credit Sesame" },
-  { k: "Open to", v: "Conversations" },
+  { k: "Focus", v: "AI × Ops" },
 ];
 
 function HeroMeta() {
