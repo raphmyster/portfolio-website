@@ -30,11 +30,21 @@ Positioning direction (established during brainstorming): a blend of the **opera
 
 ### Hero — H1
 
-**Before:**
-> `Hi, I'm Raphael.` + wave emoji
+**Before** (`index.html`):
+```html
+<h1 class="hero-title split-words">
+  Hi, I'm Raphael.<span class="hand" aria-hidden="true"> 👋</span>
+</h1>
+```
 
 **After:**
-> `Building elegant solutions to messy problems.`
+```html
+<h1 class="hero-title split-words">
+  Building elegant solutions to messy problems.
+</h1>
+```
+
+The `<span class="hand">` element is removed entirely (not left in as an empty/orphan span). The `heroWave()` function in `anim.js` targets `.hero-title .hand`; it no-ops safely when the selector finds nothing, so the function and its boot-sequence call can stay untouched. Do not delete `heroWave()` as part of this change — leaving it in place keeps the spec minimal and preserves the option of reintroducing a wave-like accent later without resurrecting removed code.
 
 Rationale: a principle statement, not a greeting. Uses the builder-culture gerund ("Building [thing]") convention, which reads as individual maker rather than agency. The eyebrow directly above (`RAPHAEL ATTAR / PORTFOLIO — 2026`) supplies the subject, so the subjectless gerund reads naturally in context. "Elegant" was chosen over "beautiful," "clean," "clear," "precise," and "intentional" because it is the canonical engineering/design word for solutions that are functional and well-crafted in the same breath, and it pairs rhetorically with "messy" as an order-from-disorder claim.
 
@@ -127,7 +137,7 @@ No other files are touched. No new files are added.
 
 - Visiting `/` shows the new H1, sub, and CTA on the hero.
 - Clicking `reach out` smooth-scrolls to the footer's contact grid.
-- The four meta grid cells show `Based / Role / Now / Focus` with values `Toronto / Builder · Ops / Credit Sesame / AI × Ops`.
+- The four meta grid cells show `Based / Role / Now / Focus` with values `Toronto / Builder / Ops / Credit Sesame / AI × Ops`. (Cells 01–03 are unchanged — `Builder / Ops` keeps its existing slash separator.)
 - The previous scroll-hint element is absent from the DOM and there are no orphan CSS rules referencing `.scroll-hint`.
 - The footer opens with the revised paragraph.
 - No regressions in layout, animations, or any section below the hero.
