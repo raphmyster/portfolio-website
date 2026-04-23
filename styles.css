@@ -178,7 +178,7 @@ body::before {
   grid-template-rows: 1fr auto;
   padding: 120px 0 60px;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 .hero-canvas {
   position: absolute;
@@ -203,7 +203,7 @@ body::before {
 }
 #hex-centerpiece-mount {
   position: absolute;
-  right: clamp(-48px, -3vw, -16px);
+  right: clamp(8px, 1.5vw, 24px);
   bottom: calc(clamp(8px, 6vh, 64px) + 48px);
   z-index: 1;
   pointer-events: none;
@@ -427,6 +427,17 @@ body::before {
 .project-link:hover { border-color: var(--accent); color: var(--accent); }
 .project-link .arr { transition: transform 0.25s ease; }
 .project-link:hover .arr { transform: translate(2px, -2px); }
+.project-meta-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  display: inline-flex;
+  align-items: center;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--rule);
+}
 
 .project-vis {
   aspect-ratio: 4 / 3;
@@ -454,6 +465,13 @@ body::before {
   top: 16px; left: 16px;
 }
 .project-vis .stamp.br { top: auto; left: auto; bottom: 16px; right: 16px; }
+.project-vis .project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
 .project-vis .glyph {
   width: 38%;
   aspect-ratio: 1;

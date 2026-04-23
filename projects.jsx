@@ -1,7 +1,4 @@
-/* Placeholder imagery for projects + gallery — subtly-striped SVG panels */
-
 function ProjectGlyph({ kind }) {
-  // Different architectural placeholder per project kind
   const glyphs = {
     extension: (
       <svg viewBox="0 0 120 120" width="100%" height="100%">
@@ -90,11 +87,23 @@ function ProjectCard({ project, idx }) {
             <span className="arr">↗</span>
           </a>
         )}
+        {!project.link && project.metaLabel && (
+          <span className="project-meta-label">{project.metaLabel}</span>
+        )}
       </div>
       <div className="project-vis" style={{ color: "var(--fg-dim)" }}>
-        <span className="stamp">PLACEHOLDER / {project.code}</span>
+        <span className="stamp">PROJECT / {project.code}</span>
         <span className="stamp br">{String(idx + 1).padStart(3, "0")}</span>
-        <div className="glyph"><ProjectGlyph kind={project.glyph} /></div>
+        {project.image ? (
+          <img
+            className="project-image"
+            src={project.image}
+            alt={`${project.title} preview`}
+            style={project.imageStyle}
+          />
+        ) : (
+          <div className="glyph"><ProjectGlyph kind={project.glyph} /></div>
+        )}
       </div>
     </article>
   );
@@ -103,25 +112,31 @@ function ProjectCard({ project, idx }) {
 const PROJECTS = [
   {
     code: "OCS-01", title: "One Click Saver", type: "Chrome Extension", glyph: "extension",
+    image: "assets/One_Click_Saver_Green.png",
     desc: "A Chrome extension that captures FF&E product data from manufacturer websites in a single click. Built to solve a workflow I watched designers struggle with — pulling specs into spreadsheets one field at a time.",
     link: "#", linkLabel: "Chrome Web Store",
   },
   {
     code: "RFI-02", title: "RFI Auto-Logger", type: "Automation Pipeline", glyph: "automation",
+    image: "assets/RFI_Logger_Green.png",
     desc: "An automation that processes incoming RFI emails, extracts relevant details with AI, assigns team members, and manages the full status lifecycle through Slack. End-to-end automation built on n8n.",
+    metaLabel: "Built in n8n",
   },
   {
     code: "SDP-03", title: "Sidepad", type: "Chrome Extension", glyph: "sidepanel",
+    image: "assets/Sidepad_Green.png",
     desc: "A side panel companion for capturing and structuring AI-generated content from any conversation or webpage. Saves locally as markdown — no cloud, no account.",
     link: "#", linkLabel: "Chrome Web Store",
   },
   {
     code: "LTP-04", title: "Litepad", type: "macOS App", glyph: "macapp",
+    image: "assets/Litepad_Green.png",
     desc: "A native markdown reader for Mac — like Adobe Reader, but for .md files. Forked from MarkEdit and repositioned for the growing audience receiving markdown from AI tools.",
     link: "#", linkLabel: "Mac App Store",
   },
   {
     code: "RIO-05", title: "Ride It Out", type: "iOS App", glyph: "ios",
+    image: "assets/Ride It Out_Green.png",
     desc: "A native iOS app that guides users through structured anxiety management exercises. Designed to be usable in moments of high stress — clean, calm, useful within seconds of opening.",
     link: "#", linkLabel: "App Store",
   },
