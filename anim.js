@@ -54,7 +54,7 @@ function splitWords(el) {
 let _revealTracked = new Set();
 function _revealCheck() {
   const vh = window.innerHeight;
-  document.querySelectorAll(".reveal:not(.in), .r-stagger:not(.in), .scramble:not(.in), .r-fade:not(.in), .split-words:not(.in)")
+  document.querySelectorAll(".reveal:not(.in), .r-stagger:not(.in), .scramble:not(.in), .r-fade:not(.in), .split-words:not(.in), .hex-wrap:not(.in)")
     .forEach((el) => {
       if (_revealTracked.has(el) && el.classList.contains("in")) return;
       if (el.classList.contains("split-words") && !_revealTracked.has(el)) {
@@ -126,20 +126,6 @@ function bindParallax() {
   requestAnimationFrame(loop);
 }
 
-/* Clock in nav */
-function startClock() {
-  const el = document.getElementById("nav-clock");
-  if (!el) return;
-  function fmt() {
-    const d = new Date();
-    const tz = "America/Toronto";
-    const s = d.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", second: "2-digit", timeZone: tz, hour12: false });
-    el.textContent = s + " TOR";
-  }
-  fmt();
-  setInterval(fmt, 1000);
-}
-
 /* Hero wave (on hand emoji / symbol) */
 function heroWave() {
   const h = document.querySelector(".hero-title .hand");
@@ -160,5 +146,5 @@ function heroWave() {
 
 Object.assign(window, {
   scrambleElement, splitWords, observeReveal, observeSvgDraws,
-  bindParallax, startClock, heroWave,
+  bindParallax, heroWave,
 });

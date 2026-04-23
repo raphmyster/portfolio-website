@@ -31,7 +31,10 @@
       <a href="#tools" data-num="05">Tools</a>
     </div>
     <div class="nav-right">
-      <span class="nav-time"><span class="pulse"></span><span id="nav-clock">--:--:-- TOR</span></span>
+      <a class="nav-social" href="mailto:raphaelattar25@gmail.com" aria-label="Email Raphael">Email</a>
+      <a class="nav-social" href="https://www.linkedin.com/in/raphael-attar/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+      <a class="nav-social" href="https://github.com/raphmyster" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
+      <a class="nav-social" href="https://www.instagram.com/raphmyster/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
     </div>
   </div>
 </nav>
@@ -40,24 +43,18 @@
 
   <section class="hero section" style="border-top:none" data-screen-label="01 Hero">
     <div class="hero-content">
-      <div>
+      <div class="hero-header">
         <div class="hero-eyebrow r-fade">
           <span class="line"></span>
           <span>RAPHAEL ATTAR / PORTFOLIO &mdash; 2026</span>
         </div>
-        <h1 class="hero-title split-words">
-          Building elegant solutions to messy problems.
-        </h1>
+        <h1 class="hero-title split-words">Building elegant solutions to messy problems.</h1>
       </div>
-      <div>
-        <p class="hero-sub split-words">
-          I build software, automations, and products with AI. Years in design and operations taught me to see both the shape of a problem and the shape of a meaningful solution.
-        </p>
-        <p class="hero-sub" style="margin-top:18px">
-          If you're working on something interesting, <a class="inline-mail" href="#footer">reach out</a>.
-        </p>
-      </div>
+      <p class="hero-sub split-words">
+        Software, automations, and products built with AI.
+      </p>
     </div>
+    <div id="hex-centerpiece-mount"></div>
 
     <div id="hero-meta-mount"></div>
   </section>
@@ -128,14 +125,14 @@
 
   <footer id="footer" class="footer" data-screen-label="07 Footer">
     <p class="footer-big split-words reveal">
-      I'd love to hear about it — especially if it lives somewhere between design, ops, and AI.
+      Got a problem worth solving? Reach out, especially if it lives somewhere between design, ops, and AI.
     </p>
 
     <div class="footer-grid">
       <div class="f-col"><small>Email</small><a href="mailto:raphaelattar25@gmail.com">raphaelattar25@gmail.com</a></div>
-      <div class="f-col"><small>LinkedIn</small><a href="#" target="_blank" rel="noopener">/in/raphaelattar</a></div>
-      <div class="f-col"><small>GitHub</small><a href="https://github.com/raphmyster" target="_blank" rel="noopener">@raphmyster</a></div>
-      <div class="f-col"><small>Instagram</small><a href="#" target="_blank" rel="noopener">@raphaelattar</a></div>
+      <div class="f-col"><small>LinkedIn</small><a href="https://www.linkedin.com/in/raphael-attar/" target="_blank" rel="noopener noreferrer">/in/raphael-attar</a></div>
+      <div class="f-col"><small>GitHub</small><a href="https://github.com/raphmyster" target="_blank" rel="noopener noreferrer">@raphmyster</a></div>
+      <div class="f-col"><small>Instagram</small><a href="https://www.instagram.com/raphmyster/" target="_blank" rel="noopener noreferrer">@raphmyster</a></div>
     </div>
 
     <div class="footer-base">
@@ -158,6 +155,7 @@
 <script src="anim.js"></script>
 <script type="text/babel" data-presets="react" src="projects.jsx"></script>
 <script type="text/babel" data-presets="react" src="tools.jsx"></script>
+<script type="text/babel" data-presets="react" src="hex.jsx"></script>
 <script type="text/babel" data-presets="react" src="hero-meta.jsx"></script>
 <script type="text/babel" data-presets="react" src="gallery.jsx"></script>
 <script type="text/babel" data-presets="react" src="timeline.jsx"></script>
@@ -165,6 +163,9 @@
 <script type="text/babel" data-presets="react">
   const heroMetaEl = document.getElementById("hero-meta-mount");
   if (heroMetaEl) ReactDOM.createRoot(heroMetaEl).render(<HeroMeta />);
+
+  const hexEl = document.getElementById("hex-centerpiece-mount");
+  if (hexEl) ReactDOM.createRoot(hexEl).render(<HexCenterpiece />);
 
   const projEl = document.getElementById("projects-mount");
   if (projEl) ReactDOM.createRoot(projEl).render(
@@ -186,7 +187,6 @@
     observeReveal();
     observeSvgDraws();
     bindParallax();
-    startClock();
     heroWave();
     const firstScramble = document.querySelector(".scramble");
     if (firstScramble) {
