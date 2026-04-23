@@ -307,20 +307,63 @@ body::before {
 @media (max-width: 720px) {
   .focus-body { grid-template-columns: 1fr; gap: 20px; }
 }
-.focus-prose p {
+.focus-prose {
+  max-width: 430px;
+}
+.focus-lead,
+.focus-support {
   font-family: var(--display);
-  font-size: clamp(22px, 2.1vw, 30px);
-  line-height: 1.38;
-  letter-spacing: -0.01em;
-  margin: 0 0 1em;
-  color: var(--fg);
-  max-width: 28ch;
+  margin: 0;
   text-wrap: pretty;
 }
-.focus-prose p.dim {
+.focus-lead {
+  font-size: clamp(28px, 2.5vw, 34px);
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin-bottom: 16px;
+}
+.focus-support {
+  font-size: clamp(17px, 1.35vw, 18px);
+  line-height: 1.52;
+  color: var(--fg-dim);
+  max-width: 31ch;
+  margin-bottom: 16px;
+}
+.focus-support-intro {
+  margin-bottom: 20px;
+}
+.focus-outcomes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  max-width: 28ch;
+}
+.focus-outcomes li {
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--fg-dim);
 }
-.focus-prose .hl { color: var(--accent); }
+@media (max-width: 720px) {
+  .focus-prose {
+    max-width: none;
+  }
+  .focus-lead {
+    font-size: clamp(26px, 7vw, 32px);
+  }
+  .focus-support {
+    max-width: none;
+  }
+  .focus-outcomes {
+    max-width: none;
+  }
+}
 
 /* --- Projects (vertical scroll list, default layout) --- */
 .projects-list {

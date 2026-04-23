@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hero layout options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E1E28; --bg-2:#0A1720; --fg:#EAF0F3; --fg-dim:#8FA0AB; --fg-faint:#4C5F6B;
+    --rule:#1F3240; --rule-strong:#2A4152; --accent:#3BE081;
+    --display:"Space Grotesk",sans-serif; --mono:"JetBrains Mono",monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg-2);color:var(--fg);font-family:var(--display);-webkit-font-smoothing:antialiased}
+  .page{max-width:1680px;margin:0 auto;padding:40px 24px 120px}
+  .frame-title{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-dim);margin:0 0 6px}
+  .frame-subtitle{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--fg-faint);margin:0 0 28px}
+  .mockup{border:1px solid var(--rule);border-radius:6px;overflow:hidden;margin-bottom:40px;background:var(--bg)}
+  .mockup-label{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:var(--bg-2);border-bottom:1px solid var(--rule);font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-dim)}
+  .mockup-label .letter{color:var(--accent);font-weight:500}
+  .mockup-label .tag{color:var(--fg-faint);font-size:10px}
+
+  /* Shared hero-ish look so mocks feel like the site */
+  .stage{position:relative;padding:56px 56px 28px;min-height:520px;display:flex;flex-direction:column}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-dim);display:flex;align-items:center;gap:14px;margin-bottom:32px}
+  .eyebrow .line{flex:0 0 40px;height:1px;background:var(--fg-dim)}
+  .h1{font-family:var(--display);font-weight:500;line-height:1.0;letter-spacing:-.035em;margin:0;text-wrap:balance;color:var(--fg)}
+  .sub{font-family:var(--display);line-height:1.55;color:var(--fg-dim);margin:0}
+  .sub a{color:var(--fg);border-bottom:1px solid var(--accent);padding:0 2px;text-decoration:none}
+  .meta{display:flex;gap:40px;flex-wrap:wrap;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-dim);padding-top:20px;border-top:1px solid var(--rule);margin-top:auto}
+  .meta b{color:var(--fg);font-weight:500;font-size:13px;display:block;margin-top:6px;letter-spacing:0;text-transform:none}
+  .meta .idx{color:var(--accent);font-family:var(--mono);margin-right:8px;font-size:10px}
+  .meta-cell{flex:1;min-width:140px;padding-left:14px;border-left:1px solid var(--rule)}
+
+  /* ============ A: Current (baseline) ============ */
+  .a .grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end}
+  .a .h1{font-size:clamp(40px,5.4vw,84px);max-width:14ch}
+  .a .sub{font-size:17px;max-width:44ch}
+
+  /* ============ B: Tightened — smaller H1, top-aligned, wider wrap ============ */
+  .b .grid{flex:1;display:grid;grid-template-columns:1.15fr 1fr;gap:72px;align-items:start;padding-top:8px}
+  .b .h1{font-size:clamp(34px,3.8vw,60px);max-width:18ch;letter-spacing:-.03em}
+  .b .sub{font-size:16px;max-width:40ch}
+  .b .sub + .sub{margin-top:18px}
+
+  /* ============ C: Single column, editorial stack ============ */
+  .c .stack{flex:1;display:flex;flex-direction:column;gap:28px;max-width:900px}
+  .c .h1{font-size:clamp(36px,4.2vw,68px);max-width:20ch}
+  .c .sub{font-size:16px;max-width:58ch}
+  .c .cta-line{font-family:var(--display);font-size:16px;color:var(--fg-dim)}
+  .c .cta-line a{color:var(--fg);border-bottom:1px solid var(--accent);padding:0 2px;text-decoration:none}
+
+  /* ============ D: Big title, compact right rail with CTA + icon ============ */
+  .d .grid{flex:1;display:grid;grid-template-columns:1.35fr .9fr;gap:60px;align-items:end}
+  .d .h1{font-size:clamp(40px,5vw,76px);max-width:15ch}
+  .d .sub{font-size:15px;max-width:36ch}
+  .d .rail{display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+  .d .rail-top{display:flex;align-items:center;gap:14px;color:var(--fg-faint);font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+  .d .hex{width:56px;height:56px;display:inline-block;flex:0 0 auto}
+
+  /* ============ E: Symmetric compact — smaller H1, sub inline under it ============ */
+  .e .stack{flex:1;display:flex;flex-direction:column;gap:24px}
+  .e .h1{font-size:clamp(32px,3.6vw,56px);max-width:22ch}
+  .e .sub{font-size:16px;max-width:48ch}
+  .e .right-anchor{position:absolute;right:56px;top:56px;opacity:.9}
+
+  /* Hex mark copied from index.html */
+  .hex-mark{width:48px;height:48px}
+  .hex-mark path{stroke:var(--fg);stroke-width:1.2;fill:none}
+  .hex-mark rect{fill:var(--accent)}
+
+  /* Bg plexus placeholder — just subtle dots so the user gets the idea without us committing */
+  .bg-plexus{position:absolute;inset:0;background-image:radial-gradient(1px 1px at 20% 30%, rgba(59,224,129,.12) 50%, transparent 51%),radial-gradient(1px 1px at 70% 70%, rgba(59,224,129,.08) 50%, transparent 51%),radial-gradient(1px 1px at 90% 20%, rgba(59,224,129,.1) 50%, transparent 51%);pointer-events:none}
+
+  @media (max-width:860px){
+    .a .grid,.b .grid,.d .grid{grid-template-columns:1fr;gap:32px;align-items:start}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="frame-title">Hero layout options — same text, different treatments</div>
+  <div class="frame-subtitle">Each mockup keeps the full H1, full subcopy, and CTA. Goal: see whether layout alone can fix the imbalance, or if the subcopy needs to be cut. Mockups are at ~80% site scale; type ratios are accurate.</div>
+
+  <!-- A -->
+  <div class="mockup a">
+    <div class="mockup-label"><span><span class="letter">A</span> &nbsp; Baseline (current)</span><span class="tag">what you have now</span></div>
+    <div class="stage">
+      <div class="eyebrow"><span class="line"></span><span>RAPHAEL ATTAR / PORTFOLIO &mdash; 2026</span></div>
+      <div class="grid">
+        <h1 class="h1">Building elegant solutions to messy problems.</h1>
+        <div>
+          <p class="sub">I build software, automations, and products with AI. Years in design and operations taught me to see both the shape of a problem and the shape of a meaningful solution.</p>
+          <p class="sub" style="margin-top:16px">If you're working on something interesting, <a href="#">reach out</a>.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <div class="meta-cell"><span class="idx">01</span>BASED<b>Toronto</b></div>
+        <div class="meta-cell"><span class="idx">02</span>ROLE<b>Builder / Ops</b></div>
+        <div class="meta-cell"><span class="idx">03</span>NOW<b>Credit Sesame</b></div>
+        <div class="meta-cell"><span class="idx">04</span>FOCUS<b>AI &times; Ops</b></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B -->
+  <div class="mockup b">
+    <div class="mockup-label"><span><span class="letter">B</span> &nbsp; Tightened — smaller H1, top-aligned, same text</span><span class="tag">keeps everything, rebalances</span></div>
+    <div class="stage">
+      <div class="eyebrow"><span class="line"></span><span>RAPHAEL ATTAR / PORTFOLIO &mdash; 2026</span></div>
+      <div class="grid">
+        <h1 class="h1">Building elegant solutions to messy problems.</h1>
+        <div>
+          <p class="sub">I build software, automations, and products with AI. Years in design and operations taught me to see both the shape of a problem and the shape of a meaningful solution.</p>
+          <p class="sub">If you're working on something interesting, <a href="#">reach out</a>.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <div class="meta-cell"><span class="idx">01</span>BASED<b>Toronto</b></div>
+        <div class="meta-cell"><span class="idx">02</span>ROLE<b>Builder / Ops</b></div>
+        <div class="meta-cell"><span class="idx">03</span>NOW<b>Credit Sesame</b></div>
+        <div class="meta-cell"><span class="idx">04</span>FOCUS<b>AI &times; Ops</b></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C -->
+  <div class="mockup c">
+    <div class="mockup-label"><span><span class="letter">C</span> &nbsp; Single-column editorial stack</span><span class="tag">no dead space, reads as one thought</span></div>
+    <div class="stage">
+      <div class="eyebrow"><span class="line"></span><span>RAPHAEL ATTAR / PORTFOLIO &mdash; 2026</span></div>
+      <div class="stack">
+        <h1 class="h1">Building elegant solutions to messy problems.</h1>
+        <p class="sub">I build software, automations, and products with AI. Years in design and operations taught me to see both the shape of a problem and the shape of a meaningful solution.</p>
+        <p class="cta-line">If you're working on something interesting, <a href="#">reach out</a>.</p>
+      </div>
+      <div class="meta">
+        <div class="meta-cell"><span class="idx">01</span>BASED<b>Toronto</b></div>
+        <div class="meta-cell"><span class="idx">02</span>ROLE<b>Builder / Ops</b></div>
+        <div class="meta-cell"><span class="idx">03</span>NOW<b>Credit Sesame</b></div>
+        <div class="meta-cell"><span class="idx">04</span>FOCUS<b>AI &times; Ops</b></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D -->
+  <div class="mockup d">
+    <div class="mockup-label"><span><span class="letter">D</span> &nbsp; Asymmetric — big H1 left, compact rail right with logo mark</span><span class="tag">right column earns its space</span></div>
+    <div class="stage">
+      <div class="eyebrow"><span class="line"></span><span>RAPHAEL ATTAR / PORTFOLIO &mdash; 2026</span></div>
+      <div class="grid">
+        <h1 class="h1">Building elegant solutions to messy problems.</h1>
+        <div class="rail">
+          <svg class="hex hex-mark" viewBox="0 0 40 40" aria-hidden="true">
+            <path d="M20 3 L35 12 L35 28 L20 37 L5 28 L5 12 Z"/>
+            <rect x="15" y="13" width="2" height="14"/>
+            <rect x="19" y="11" width="2" height="18"/>
+            <rect x="23" y="13" width="2" height="14"/>
+          </svg>
+          <p class="sub">I build software, automations, and products with AI. Years in design and operations taught me to see both the shape of a problem and the shape of a meaningful solution.</p>
+          <p class="sub">If you're working on something interesting, <a href="#">reach out</a>.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <div class="meta-cell"><span class="idx">01</span>BASED<b>Toronto</b></div>
+        <div class="meta-cell"><span class="idx">02</span>ROLE<b>Builder / Ops</b></div>
+        <div class="meta-cell"><span class="idx">03</span>NOW<b>Credit Sesame</b></div>
+        <div class="meta-cell"><span class="idx">04</span>FOCUS<b>AI &times; Ops</b></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E -->
+  <div class="mockup e">
+    <div class="mockup-label"><span><span class="letter">E</span> &nbsp; Compact stack + icon anchor upper-right</span><span class="tag">quiet logo presence, minimal text</span></div>
+    <div class="stage">
+      <div class="eyebrow"><span class="line"></span><span>RAPHAEL ATTAR / PORTFOLIO &mdash; 2026</span></div>
+      <svg class="right-anchor hex-mark" style="width:56px;height:56px" viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M20 3 L35 12 L35 28 L20 37 L5 28 L5 12 Z"/>
+        <rect x="15" y="13" width="2" height="14"/>
+        <rect x="19" y="11" width="2" height="18"/>
+        <rect x="23" y="13" width="2" height="14"/>
+      </svg>
+      <div class="stack">
+        <h1 class="h1">Building elegant solutions to messy problems.</h1>
+        <p class="sub">I build software, automations, and products with AI. Years in design and operations taught me to see both the shape of a problem and the shape of a meaningful solution.</p>
+        <p class="sub">If you're working on something interesting, <a href="#">reach out</a>.</p>
+      </div>
+      <div class="meta">
+        <div class="meta-cell"><span class="idx">01</span>BASED<b>Toronto</b></div>
+        <div class="meta-cell"><span class="idx">02</span>ROLE<b>Builder / Ops</b></div>
+        <div class="meta-cell"><span class="idx">03</span>NOW<b>Credit Sesame</b></div>
+        <div class="meta-cell"><span class="idx">04</span>FOCUS<b>AI &times; Ops</b></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

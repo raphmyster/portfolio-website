@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 1 Variants</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top right, rgba(59, 224, 129, 0.08), transparent 28%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+    }
+
+    .variants-shell {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 120px var(--pad) 80px;
+    }
+
+    .variants-intro {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 40px;
+      align-items: start;
+      margin-bottom: 56px;
+    }
+
+    .variants-kicker {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+
+    .variants-title {
+      font-family: var(--display);
+      font-size: clamp(40px, 5vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      margin: 0 0 16px;
+    }
+
+    .variants-copy {
+      margin: 0;
+      color: var(--fg-dim);
+      max-width: 62ch;
+      font-size: 16px;
+    }
+
+    .variants-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .variant-card {
+      min-height: 640px;
+      border: 1px solid var(--rule);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0)),
+        color-mix(in oklab, var(--bg-2) 82%, transparent);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .variant-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, transparent, rgba(255,255,255,0.015), transparent),
+        repeating-linear-gradient(0deg, transparent 0 31px, rgba(255,255,255,0.02) 31px 32px);
+      pointer-events: none;
+    }
+
+    .variant-card.recommended {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(59, 224, 129, 0.18);
+    }
+
+    .variant-meta {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 42px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+
+    .variant-badge {
+      padding: 7px 10px;
+      border: 1px solid var(--rule);
+      color: var(--fg-faint);
+    }
+
+    .variant-card.recommended .variant-badge {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .variant-visual {
+      position: relative;
+      z-index: 1;
+      min-height: 460px;
+    }
+
+    .variant-name {
+      margin: 0 0 22px;
+      font-family: var(--display);
+      font-size: clamp(26px, 2.4vw, 34px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+
+    .variant-note {
+      position: relative;
+      z-index: 1;
+      margin: 24px 0 0;
+      color: var(--fg-dim);
+      font-size: 14px;
+      max-width: 32ch;
+    }
+
+    .focus-paragraph {
+      margin: 0;
+      font-family: var(--display);
+      color: var(--fg);
+    }
+
+    .focus-paragraph strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .v1-frame {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 20px;
+      align-items: start;
+      padding-top: 8px;
+    }
+
+    .v1-rail {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--fg-faint);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+
+    .v1-copy {
+      font-size: clamp(28px, 2.7vw, 40px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      max-width: 12ch;
+    }
+
+    .v2-frame {
+      border-top: 1px solid var(--rule-strong);
+      padding-top: 18px;
+    }
+
+    .v2-copy {
+      font-size: clamp(23px, 2vw, 30px);
+      line-height: 1.28;
+      letter-spacing: -0.02em;
+      max-width: 18ch;
+      margin-bottom: 26px;
+    }
+
+    .v2-signals {
+      display: grid;
+      gap: 12px;
+      max-width: 26ch;
+    }
+
+    .v2-signal {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+
+    .v2-signal b {
+      color: var(--fg);
+      font-weight: 500;
+    }
+
+    .v3-frame {
+      position: relative;
+      padding: 26px 24px 28px;
+      background: var(--accent-ghost);
+      border: 1px solid var(--rule);
+    }
+
+    .v3-frame::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 24px;
+      width: 84px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .v3-label {
+      margin: 0 0 18px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .v3-copy {
+      font-size: clamp(22px, 1.95vw, 28px);
+      line-height: 1.32;
+      letter-spacing: -0.018em;
+      max-width: 19ch;
+    }
+
+    .v3-footer {
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+
+    @media (max-width: 1100px) {
+      .variants-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .variant-card {
+        min-height: auto;
+      }
+
+      .variant-visual {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .variants-shell {
+        padding-top: 96px;
+      }
+
+      .variants-intro {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .v1-frame {
+        grid-template-columns: 1fr;
+      }
+
+      .v1-rail {
+        writing-mode: horizontal-tb;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="variants-shell">
+    <section class="variants-intro">
+      <div class="variants-kicker"><span style="color: var(--accent);">01</span> Study</div>
+      <div>
+        <h1 class="variants-title">Chapter 1 visual companion</h1>
+        <p class="variants-copy">
+          Same paragraph, three treatments. Each one stays inside the site’s current system:
+          Swiss framing, mono labels, dark field, thin rules, and one phosphor accent.
+        </p>
+      </div>
+    </section>
+
+    <section class="variants-grid">
+      <article class="variant-card recommended">
+        <div class="variant-meta">
+          <span>Variant A</span>
+          <span class="variant-badge">Recommended</span>
+        </div>
+        <div class="variant-visual v1-frame">
+          <div class="v1-rail">Chapter 01 / Focus</div>
+          <div>
+            <h2 class="variant-name">Monument paragraph</h2>
+            <p class="focus-paragraph v1-copy">
+              Right now, I'm most interested in <strong>helping people</strong> who know they should be doing something with AI but don't yet know what that looks like in practice. The part I care about is turning vague curiosity into something useful: a better workflow, a small tool, an automation, or a product that actually saves time and solves a real problem.
+            </p>
+          </div>
+        </div>
+        <p class="variant-note">
+          Best if Chapter 1 should feel immediate and confident. One large reading gesture, no secondary decisions.
+        </p>
+      </article>
+
+      <article class="variant-card">
+        <div class="variant-meta">
+          <span>Variant B</span>
+          <span class="variant-badge">Structured</span>
+        </div>
+        <div class="variant-visual v2-frame">
+          <h2 class="variant-name">Paragraph plus signals</h2>
+          <p class="focus-paragraph v2-copy">
+            Right now, I'm most interested in helping people who know they should be doing something with AI but don't yet know what that looks like in practice. The part I care about is turning vague curiosity into something useful.
+          </p>
+          <div class="v2-signals">
+            <div class="v2-signal"><span>Output</span><b>Better workflow</b></div>
+            <div class="v2-signal"><span>Shape</span><b>Small tool</b></div>
+            <div class="v2-signal"><span>Leverage</span><b>Automation</b></div>
+            <div class="v2-signal"><span>Goal</span><b>Real saved time</b></div>
+          </div>
+        </div>
+        <p class="variant-note">
+          Most skimmable. Slightly less pure, but it gives the eye more anchors without adding much copy.
+        </p>
+      </article>
+
+      <article class="variant-card">
+        <div class="variant-meta">
+          <span>Variant C</span>
+          <span class="variant-badge">Editorial</span>
+        </div>
+        <div class="variant-visual">
+          <h2 class="variant-name">Field note panel</h2>
+          <div class="v3-frame">
+            <p class="v3-label">Current focus / 2026</p>
+            <p class="focus-paragraph v3-copy">
+              Right now, I'm most interested in helping people who know they should be doing something with AI but don't yet know what that looks like in practice. The part I care about is turning vague curiosity into something useful: a better workflow, a small tool, an automation, or a product that actually saves time and solves a real problem.
+            </p>
+            <p class="v3-footer">Design x operations x code</p>
+          </div>
+        </div>
+        <p class="variant-note">
+          Best if you want Chapter 1 to feel more like an annotated note or essay insert than a standard section.
+        </p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

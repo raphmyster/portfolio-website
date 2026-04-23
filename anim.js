@@ -34,7 +34,7 @@ function scrambleElement(el, duration = 900) {
 function splitWords(el) {
   if (el.dataset.split) return;
   el.dataset.split = "1";
-  const text = el.textContent;
+  const text = el.textContent.replace(/\s+/g, " ").trim();
   el.textContent = "";
   const words = text.split(/(\s+)/);
   words.forEach((w, i) => {
