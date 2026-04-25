@@ -8,9 +8,12 @@ function scrambleElement(el, duration = 900) {
   el.dataset.text = target;
   const len = target.length;
   const start = performance.now();
+  const runId = String((parseInt(el.dataset.scrambleRun || "0", 10) || 0) + 1);
+  el.dataset.scrambleRun = runId;
   const fixedBy = new Array(len).fill(0).map((_, i) => start + (i / len) * duration * 0.7 + duration * 0.2);
 
   function tick(now) {
+    if (el.dataset.scrambleRun !== runId) return;
     let out = "";
     let done = true;
     for (let i = 0; i < len; i++) {
@@ -28,6 +31,27 @@ function scrambleElement(el, duration = 900) {
     else el.textContent = target;
   }
   requestAnimationFrame(tick);
+}
+
+function bindChapterTitleScramble() {
+  document.querySelectorAll(".section-title.scramble").forEach((title) => {
+    if (!title.dataset.scrambleHoverBound) {
+      title.dataset.scrambleHoverBound = "1";
+      title.addEventListener("mouseenter", () => scrambleElement(title));
+    }
+  });
+
+  document.querySelectorAll('.nav-links a[href^="#"]').forEach((link) => {
+    if (link.dataset.scrambleNavBound) return;
+    link.dataset.scrambleNavBound = "1";
+    link.addEventListener("click", () => {
+      const id = link.getAttribute("href");
+      if (!id || id === "#top") return;
+      const section = document.querySelector(id);
+      const title = section && section.querySelector(".section-title.scramble");
+      if (title) scrambleElement(title);
+    });
+  });
 }
 
 /* Split text into word + line spans for staggered reveals */
@@ -73,6 +97,7 @@ function _revealCheck() {
 }
 function observeReveal() {
   _revealCheck();
+  bindChapterTitleScramble();
   if (!window._revealBound) {
     window._revealBound = true;
     window.addEventListener("scroll", _revealCheck, { passive: true });
@@ -146,5 +171,5 @@ function heroWave() {
 
 Object.assign(window, {
   scrambleElement, splitWords, observeReveal, observeSvgDraws,
-  bindParallax, heroWave,
+  bindParallax, heroWave, bindChapterTitleScramble,
 });

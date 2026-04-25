@@ -112,31 +112,31 @@ function ProjectCard({ project, idx }) {
 const PROJECTS = [
   {
     code: "OCS-01", title: "One Click Saver", type: "Chrome Extension", glyph: "extension",
-    image: "assets/One_Click_Saver_Green.png",
+    image: "assets/One_Click_Saver_Green.png?v=20260424-project-images-refresh-3",
     desc: "A Chrome extension that captures FF&E product data from manufacturer websites in a single click. Built to solve a workflow I watched designers struggle with — pulling specs into spreadsheets one field at a time.",
     link: "#", linkLabel: "Chrome Web Store",
   },
   {
     code: "RFI-02", title: "RFI Auto-Logger", type: "Automation Pipeline", glyph: "automation",
-    image: "assets/RFI_Logger_Green.png",
+    image: "assets/RFI_Logger_Green.png?v=20260424-project-images-refresh-3",
     desc: "An automation that processes incoming RFI emails, extracts relevant details with AI, assigns team members, and manages the full status lifecycle through Slack. End-to-end automation built on n8n.",
     metaLabel: "Built in n8n",
   },
   {
     code: "SDP-03", title: "Sidepad", type: "Chrome Extension", glyph: "sidepanel",
-    image: "assets/Sidepad_Green.png",
+    image: "assets/Sidepad_Green.png?v=20260424-project-images-refresh-3",
     desc: "A side panel companion for capturing and structuring AI-generated content from any conversation or webpage. Saves locally as markdown — no cloud, no account.",
     link: "#", linkLabel: "Chrome Web Store",
   },
   {
     code: "LTP-04", title: "Litepad", type: "macOS App", glyph: "macapp",
-    image: "assets/Litepad_Green.png",
+    image: "assets/Litepad_Green.png?v=20260424-project-images-refresh-3",
     desc: "A native markdown reader for Mac — like Adobe Reader, but for .md files. Forked from MarkEdit and repositioned for the growing audience receiving markdown from AI tools.",
     link: "#", linkLabel: "Mac App Store",
   },
   {
     code: "RIO-05", title: "Ride It Out", type: "iOS App", glyph: "ios",
-    image: "assets/Ride It Out_Green.png",
+    image: "assets/Ride It Out_Green.png?v=20260424-project-images-refresh-3",
     desc: "A native iOS app that guides users through structured anxiety management exercises. Designed to be usable in moments of high stress — clean, calm, useful within seconds of opening.",
     link: "#", linkLabel: "App Store",
   },
