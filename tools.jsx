@@ -1,35 +1,39 @@
 /* Tools constellation — scattered positions by category */
 
 const TOOLS = [
-  // AI & Development — centered phosphor cluster
-  { name: "Claude Code", cat: "ai", x: 38, y: 28 },
-  { name: "Cursor", cat: "ai", x: 52, y: 20 },
-  { name: "Codex", cat: "ai", x: 62, y: 32 },
-  { name: "Anthropic", cat: "ai", x: 46, y: 40 },
-  { name: "OpenAI", cat: "ai", x: 68, y: 46 },
-  { name: "Python", cat: "ai", x: 30, y: 50 },
-  { name: "TypeScript", cat: "ai", x: 56, y: 54 },
-  { name: "React", cat: "ai", x: 40, y: 62 },
-  { name: "Next.js", cat: "ai", x: 66, y: 62 },
-  { name: "Swift", cat: "ai", x: 50, y: 70 },
+  // Scattered across the field — loose left-to-right gradient
+  // (AI weighted left, Design weighted right, Auto + Marketing interleaved)
+  // with intentional drift across category boundaries.
 
-  // Automation & Workflows — upper-right arm
-  { name: "n8n", cat: "auto", x: 80, y: 20 },
-  { name: "Slack", cat: "auto", x: 86, y: 34 },
-  { name: "Google Workspace", cat: "auto", x: 82, y: 50 },
-  { name: "Firecrawl", cat: "auto", x: 76, y: 78 },
-  { name: "Zapier", cat: "auto", x: 88, y: 66 },
+  { name: "Claude Code", cat: "ai", x: 22, y: 22 },
+  { name: "n8n", cat: "auto", x: 44, y: 24 },
+  { name: "AutoCAD", cat: "design", x: 82, y: 26 },
 
-  // Marketing & Operations — lower-left
-  { name: "Google Analytics", cat: "ops", x: 14, y: 68 },
-  { name: "Segment", cat: "ops", x: 22, y: 80 },
+  { name: "Codex", cat: "ai", x: 38, y: 30 },
+  { name: "Figma", cat: "design", x: 68, y: 20 },
+  { name: "Cursor", cat: "ai", x: 12, y: 36 },
+  { name: "Braze", cat: "ops", x: 58, y: 34 },
 
-  // Design — upper-left arm
-  { name: "Figma", cat: "design", x: 14, y: 22 },
-  { name: "AutoCAD", cat: "design", x: 8, y: 40 },
-  { name: "SketchUp", cat: "design", x: 22, y: 36 },
-  { name: "Adobe CC", cat: "design", x: 18, y: 52 },
-  { name: "Rhino", cat: "design", x: 32, y: 86 },
+  { name: "AppsFlyer", cat: "ops", x: 70, y: 40 },
+  { name: "Photoshop", cat: "design", x: 86, y: 42 },
+  { name: "Firecrawl", cat: "auto", x: 52, y: 44 },
+
+  { name: "GitHub", cat: "ai", x: 26, y: 46 },
+  { name: "Impact Radius", cat: "ops", x: 46, y: 54 },
+  { name: "SketchUp", cat: "design", x: 74, y: 54 },
+
+  { name: "Slack", cat: "auto", x: 36, y: 60 },
+  { name: "Mixpanel", cat: "ops", x: 62, y: 62 },
+  { name: "Canva", cat: "design", x: 80, y: 64 },
+
+  { name: "Supabase", cat: "ai", x: 42, y: 68 },
+  { name: "App Store Connect", cat: "ai", x: 18, y: 63 },
+  { name: "Google Ads", cat: "ops", x: 54, y: 74 },
+  { name: "Procreate", cat: "design", x: 90, y: 76 },
+
+  { name: "Google Cloud Platform", cat: "auto", x: 32, y: 78 },
+  { name: "Facebook Ads", cat: "ops", x: 66, y: 80 },
+  { name: "Chrome Web Store", cat: "ai", x: 16, y: 82 },
 ];
 
 function ToolsField() {
