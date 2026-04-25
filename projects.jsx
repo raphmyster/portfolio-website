@@ -104,7 +104,7 @@ function ProjectCard({ project, idx }) {
           <span className="project-meta-label">{project.metaLabel}</span>
         )}
       </div>
-      <div className="project-vis" style={{ color: "var(--fg-dim)" }}>
+      <div className={"project-vis" + (project.image ? " has-image" : "")} style={{ color: "var(--fg-dim)" }}>
         <span className="stamp">PROJECT / {project.code}</span>
         <span className="stamp br">{String(idx + 1).padStart(3, "0")}</span>
         {project.image ? (

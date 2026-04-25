@@ -8,7 +8,8 @@ const GALLERY_PROJECTS = [
     type: "Cocktail Lounge",
     year: "2022",
     caption: "Project documentation and visual development for Deer Lady.",
-    kind: "plan",
+    glyph: "deer-lady-mirrors",
+    previewSrc: "03.jpg",
     images: [
       { src: "01.jpg", caption: null },
       { src: "02.jpg", caption: null },
@@ -27,7 +28,8 @@ const GALLERY_PROJECTS = [
     type: "Restaurant Concept",
     year: "2025",
     caption: "Identity and supporting design work for Dead Set On Living.",
-    kind: "swatch",
+    glyph: "dead-set-canopy",
+    previewSrc: "01.jpg",
     images: [
       { src: "01.jpg", caption: "Bar corner" },
       { src: "02.jpg", caption: "Bar" },
@@ -44,14 +46,15 @@ const GALLERY_PROJECTS = [
     type: "Headquarter Concept",
     year: "2026",
     caption: "Creative and design system work for Bob Does Sports.",
-    kind: "section",
+    glyph: "bob-trajectory",
+    previewSrc: "03.jpg",
     images: [
-      { src: "01.jpg", caption: "Kitchen lounge" },
-      { src: "02.jpg", caption: "Basketball" },
       { src: "03.jpg", caption: "Sim" },
       { src: "04.jpg", caption: "Podcast studio" },
       { src: "05.jpg", caption: "Central view" },
       { src: "06.jpg", caption: "Sim 2" },
+      { src: "01.jpg", caption: "Kitchen lounge" },
+      { src: "02.jpg", caption: "Basketball court" },
     ],
   },
   {
@@ -61,7 +64,8 @@ const GALLERY_PROJECTS = [
     type: "Experiential Concept",
     year: "2017",
     caption: "Architectural design work for Viewpoint.",
-    kind: "axon",
+    glyph: "viewpoint-horizon",
+    previewSrc: "06.jpg",
     images: [
       { src: "01.jpg", caption: "Heli" },
       { src: "02.jpg", caption: "Stairway" },
@@ -74,65 +78,74 @@ const GALLERY_PROJECTS = [
   },
 ];
 
-function GalleryGlyph({ kind }) {
+function GalleryGlyph({ glyph }) {
   const glyphs = {
-    plan: (
-      <svg viewBox="0 0 200 140" width="100%" height="100%">
-        <rect x="10" y="10" width="180" height="120" fill="none" stroke="currentColor" strokeWidth="0.8" />
-        <line x1="10" y1="60" x2="120" y2="60" stroke="currentColor" strokeWidth="0.6" />
-        <line x1="120" y1="10" x2="120" y2="130" stroke="currentColor" strokeWidth="0.6" />
-        <line x1="60" y1="60" x2="60" y2="130" stroke="currentColor" strokeWidth="0.6" />
-        <line x1="120" y1="90" x2="190" y2="90" stroke="currentColor" strokeWidth="0.6" />
-        <path d="M60 60 A 20 20 0 0 1 80 40" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.7" />
-        <path d="M120 90 A 16 16 0 0 1 136 74" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.7" />
-        <rect x="130" y="20" width="50" height="30" fill="none" stroke="var(--accent)" strokeWidth="0.6" />
-        <line x1="130" y1="50" x2="180" y2="20" stroke="var(--accent)" strokeWidth="0.4" opacity="0.6" />
-        <line x1="10" y1="136" x2="190" y2="136" stroke="currentColor" strokeWidth="0.4" opacity="0.5" />
-        <text x="100" y="134" textAnchor="middle" fill="currentColor" fontSize="5" fontFamily="monospace" opacity="0.6">18.4 m</text>
+    "deer-lady-mirrors": (
+      <svg viewBox="0 0 220 220" width="100%" height="100%">
+        <g fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round">
+          <line x1="48" y1="10" x2="48" y2="30" />
+          <line x1="48" y1="190" x2="48" y2="210" />
+          <rect x="30" y="30" width="36" height="160" rx="12" />
+          <line x1="110" y1="10" x2="110" y2="30" />
+          <line x1="110" y1="190" x2="110" y2="210" />
+          <rect x="92" y="30" width="36" height="160" rx="12" />
+        </g>
+        <g fill="none" stroke="var(--accent)" strokeWidth="2.6" strokeLinecap="round">
+          <line x1="172" y1="10" x2="172" y2="30" />
+          <line x1="172" y1="190" x2="172" y2="210" />
+          <rect x="154" y="30" width="36" height="160" rx="12" stroke="var(--accent)" />
+        </g>
       </svg>
     ),
-    swatch: (
-      <svg viewBox="0 0 200 140" width="100%" height="100%">
-        {[...Array(6)].map((_, i) => (
-          <rect key={i} x={14 + i * 30} y="20" width="24" height="60" fill="none" stroke="currentColor" strokeWidth="0.8" opacity={0.4 + i * 0.08} />
-        ))}
-        <rect x="74" y="20" width="24" height="60" fill="var(--accent)" opacity="0.4" />
-        {[...Array(8)].map((_, i) => (
-          <circle key={i} cx={20 + i * 22} cy="110" r="6" fill="none" stroke="currentColor" strokeWidth="0.6" />
-        ))}
+    "dead-set-canopy": (
+      <svg viewBox="0 0 200 200" width="100%" height="100%">
+        <g transform="translate(4 12)" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+          <line x1="20" y1="74" x2="86" y2="38" />
+          <line x1="34" y1="46" x2="92" y2="88" />
+          <line x1="54" y1="24" x2="124" y2="82" />
+          <line x1="110" y1="30" x2="172" y2="74" />
+          <line x1="30" y1="106" x2="96" y2="70" />
+          <line x1="58" y1="96" x2="122" y2="126" />
+          <line x1="78" y1="118" x2="148" y2="138" />
+          <line x1="112" y1="56" x2="170" y2="108" />
+          <line x1="88" y1="152" x2="154" y2="96" />
+        </g>
+        <g transform="translate(4 12)" fill="none" stroke="var(--accent)" strokeWidth="3" strokeLinecap="round">
+          <line x1="84" y1="36" x2="150" y2="62" />
+          <line x1="50" y1="144" x2="118" y2="94" />
+        </g>
       </svg>
     ),
-    section: (
-      <svg viewBox="0 0 200 140" width="100%" height="100%">
-        <path d="M10 110 L 60 90 L 90 70 L 130 55 L 170 75 L 190 95 L 190 130 L 10 130 Z" fill="none" stroke="currentColor" strokeWidth="0.8" />
-        <rect x="80" y="40" width="50" height="40" fill="none" stroke="var(--accent)" strokeWidth="1" />
-        <line x1="80" y1="55" x2="130" y2="55" stroke="var(--accent)" strokeWidth="0.5" />
-        <line x1="105" y1="40" x2="105" y2="80" stroke="var(--accent)" strokeWidth="0.5" />
-        {[...Array(14)].map((_, i) => (
-          <line key={i} x1={10 + i * 13} y1="130" x2={15 + i * 13} y2="138" stroke="currentColor" strokeWidth="0.4" />
-        ))}
-        <text x="100" y="20" textAnchor="middle" fill="currentColor" fontSize="6" fontFamily="monospace" opacity="0.5">SECTION A-A</text>
+    "bob-trajectory": (
+      <svg viewBox="0 0 220 240" width="100%" height="100%">
+        <g transform="translate(0 18)" fill="none" stroke="currentColor" strokeWidth="2.9" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M110 172 L110 18" />
+          <path d="M110 172 C106 132 96 96 82 68" />
+          <path d="M82 68 C74 54 62 50 52 54" />
+          <path d="M110 172 C118 138 129 112 142 88" />
+          <path d="M142 88 C148 78 156 74 164 74" />
+        </g>
+        <circle cx="110" cy="190" r="4.5" fill="var(--accent)" stroke="none" />
+        <g transform="translate(0 18)" fill="none" stroke="var(--accent)" strokeWidth="2.6">
+          <circle cx="110" cy="18" r="6.5" />
+          <circle cx="52" cy="54" r="6.5" />
+          <circle cx="164" cy="74" r="6.5" />
+        </g>
       </svg>
     ),
-    axon: (
-      <svg viewBox="0 0 200 140" width="100%" height="100%">
-        <path d="M60 90 L 120 90 L 150 70 L 90 70 Z" fill="none" stroke="currentColor" strokeWidth="0.8" />
-        <path d="M60 90 L 60 50 L 90 30 L 90 70" fill="none" stroke="currentColor" strokeWidth="0.8" />
-        <path d="M120 90 L 120 50 L 90 30" fill="none" stroke="currentColor" strokeWidth="0.8" />
-        <path d="M150 70 L 150 30 L 120 50 M 120 50 L 90 30" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.5" />
-        <path d="M90 30 L 90 70 M 90 70 L 150 70" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.3" strokeDasharray="2 2" />
-        <rect x="75" y="60" width="20" height="16" fill="var(--accent)" opacity="0.5" />
-        {[...Array(5)].map((_, i) => (
-          <line key={i} x1="20" y1={20 + i * 25} x2="40" y2={20 + i * 25} stroke="currentColor" strokeWidth="0.3" opacity="0.4" />
-        ))}
+    "viewpoint-horizon": (
+      <svg viewBox="0 0 220 160" width="100%" height="100%">
+        <line x1="22" y1="92" x2="198" y2="92" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" />
+        <path d="M82 92 A28 28 0 0 1 138 92" fill="none" stroke="var(--accent)" strokeWidth="2.8" strokeLinecap="round" />
       </svg>
     ),
   };
-  return glyphs[kind] || glyphs.plan;
+  return glyphs[glyph] || glyphs["deer-lady-mirrors"];
 }
 
 function GalleryTile({ project, index, onOpen }) {
-  const firstThumb = `assets/design/${project.slug}/thumbs/${project.images[0].src}`;
+  const previewSrc = project.previewSrc || project.images[0].src;
+  const firstPreview = `assets/design/${project.slug}/${previewSrc}`;
 
   return (
     <figure className="gsh-item reveal">
@@ -145,11 +158,11 @@ function GalleryTile({ project, index, onOpen }) {
       >
         <div className="gsh-tile-flipper">
           <div className="gsh-tile-front gsh-frame" style={{ color: "var(--fg-dim)" }}>
-            <GalleryGlyph kind={project.kind} />
+            <GalleryGlyph glyph={project.glyph} />
             <span className="gsh-num">{String(index + 1).padStart(2, "0")}</span>
           </div>
-          <div className="gsh-tile-back gsh-frame">
-            <img className="gsh-photo" src={firstThumb} alt="" loading="lazy" />
+          <div className="gsh-tile-back gsh-frame gsh-frame-photo">
+            <img className="gsh-photo" src={firstPreview} alt="" loading="lazy" />
             <span className="gsh-num">{String(index + 1).padStart(2, "0")}</span>
           </div>
         </div>
@@ -174,7 +187,7 @@ function LightboxImage({ src, alt, glyphKind }) {
   if (errored) {
     return (
       <div className="lightbox-image lightbox-image-fallback" role="img" aria-label="Image unavailable">
-        <GalleryGlyph kind={glyphKind} />
+        <GalleryGlyph glyph={glyphKind} />
         <span className="lightbox-fallback-msg">image unavailable</span>
       </div>
     );
@@ -283,7 +296,7 @@ function Lightbox({ project, imageIndex, onClose, onSetIndex }) {
         </div>
 
         <button type="button" className="lightbox-arrow lightbox-arrow-prev" onClick={prev} aria-label="Previous">◂</button>
-        <LightboxImage src={fullSrc} alt={image.caption || project.title} glyphKind={project.kind} />
+        <LightboxImage src={fullSrc} alt={image.caption || project.title} glyphKind={project.glyph} />
         <button type="button" className="lightbox-arrow lightbox-arrow-next" onClick={next} aria-label="Next">▸</button>
 
         {image.caption && <div className="lightbox-caption">{image.caption}</div>}

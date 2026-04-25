@@ -22,12 +22,12 @@ if ! rg -Fq 'glyph: "viewpoint-horizon"' gallery.jsx; then
   exit 1
 fi
 
-if ! rg -Fq '<rect x="156" y="30" width="40" height="160" rx="12" stroke="var(--accent)"' gallery.jsx; then
+if ! rg -Fq '<rect x="154" y="30" width="36" height="160" rx="12" stroke="var(--accent)"' gallery.jsx; then
   echo "expected Deer Lady right mirror accent geometry"
   exit 1
 fi
 
-if ! rg -Fq '<circle cx="110" cy="172" r="4.5" fill="var(--accent)" stroke="none" />' gallery.jsx; then
+if ! rg -Fq '<circle cx="110" cy="190" r="4.5" fill="var(--accent)" stroke="none" />' gallery.jsx; then
   echo "expected Bob Does Sports base accent dot"
   exit 1
 fi

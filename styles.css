@@ -457,6 +457,8 @@ body::before {
   background-image:
     repeating-linear-gradient(45deg, transparent 0 14px, rgba(255,255,255,0.02) 14px 15px);
 }
+.project-vis.has-image::before,
+.project-vis:has(.project-image)::before { display: none; }
 .project-vis .stamp {
   font-family: var(--mono);
   font-size: 10px;
@@ -1331,6 +1333,7 @@ body::before {
   opacity: 0.4;
   pointer-events: none;
 }
+.gsh-frame-photo::before { display: none; }
 .gsh-frame svg { position: relative; z-index: 1; max-width: 78%; }
 .gsh-num {
   position: absolute;
@@ -1418,6 +1421,7 @@ body::before {
   height: 100%;
   object-fit: cover;
   display: block;
+  image-rendering: auto;
 }
 
 .gsh-tile:focus-visible {
