@@ -92,7 +92,7 @@ Image paths are reconstructed from the data:
 ### Resting state
 
 - **Hover-capable devices** (`@media (hover: hover)`): tile shows the SVG glyph (front face). The existing look is preserved as the default.
-- **Touch devices** (`@media (hover: none)`): tile shows the photo directly. No flip animation. The user sees real work without needing a hover-only interaction.
+- **Touch devices** (`@media (hover: none)`): tile shows the photo directly (using the 200px thumb — bandwidth-conscious, and the lightbox will load the full version on tap). No flip animation. The user sees real work without needing a hover-only interaction.
 
 ### Flip animation (hover-capable only)
 
@@ -190,7 +190,7 @@ Single-tap on the image toggles chrome visibility (top bar + dots) so the photo 
 ### URL & sharing
 
 - Open state encoded as `#design/<slug>/<1-indexed-image>`, e.g. `#design/deer-lady/3`.
-- On page load, if the hash matches a known slug + valid index, the lightbox opens directly to that image (without animation, to avoid an awkward intro on a fresh load).
+- On page load, if the hash matches a known slug + valid index, the lightbox opens directly to that image — no intro animation. Backdrop appears immediately, image appears immediately. This avoids an awkward intro on a fresh load.
 - Closing strips the hash.
 
 ## Build script
