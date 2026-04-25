@@ -1,10 +1,10 @@
 /* Gallery — contact-sheet variant */
 
 const GALLERY_ITEMS = [
-  { code: "ARC-01", title: "Urban Infill Residence", type: "Architecture", year: "2018", caption: "Mixed-use residential in Toronto's east end. Plan diagrams and structural details.", kind: "plan" },
-  { code: "INT-02", title: "Retail Showroom", type: "Interior", year: "2017", caption: "Flagship FF&E showroom, 4,200 sq ft. Material palette studies and lighting plan.", kind: "swatch" },
-  { code: "STU-03", title: "Ski Chalet Study", type: "Architecture", year: "2015", caption: "Site-integrated concept. Sections through a Laurentian hillside.", kind: "section" },
-  { code: "IND-04", title: "Adaptive Reuse", type: "Interior", year: "2019", caption: "Warehouse-to-office conversion. Reflected ceiling and systems overlay.", kind: "axon" },
+  { code: "DL-01", title: "Deer Lady", type: "Cocktail Lounge", year: "2022", caption: "Project documentation and visual development for Deer Lady.", kind: "plan" },
+  { code: "DSOL-2", title: "Dead Set On Living", type: "Restaurant Concept", year: "2025", caption: "Identity and supporting design work for Dead Set On Living.", kind: "swatch" },
+  { code: "BDS-03", title: "Bob Does Sports", type: "Headquarter Concept", year: "2026", caption: "Creative and design system work for Bob Does Sports.", kind: "section" },
+  { code: "ARC-04", title: "Viewpoint", type: "Experiential Concept", year: "2017", caption: "Architectural design work for Viewpoint.", kind: "axon" },
 ];
 
 function GalleryGlyph({ kind }) {
@@ -69,7 +69,7 @@ function Gallery() {
     <div className="gallery-sheet">
       <div className="gsh-header">
         <span>CONTACT SHEET / 01</span>
-        <span>RAA — SELECTED WORK 2015–2019</span>
+        <span>RAA — DESIGN WORK 2017-2026</span>
         <span>{GALLERY_ITEMS.length} / {GALLERY_ITEMS.length}</span>
       </div>
       <div className="gsh-grid">
@@ -90,7 +90,7 @@ function Gallery() {
       </div>
       <div className="gsh-footer">
         <span>▸ RAA-PORTFOLIO-2026</span>
-        <span>ARCH / INT</span>
+        <span>HOSPITALITY / PLAY / EXPERIENCE</span>
         <span>{new Date().getFullYear()}</span>
       </div>
     </div>
