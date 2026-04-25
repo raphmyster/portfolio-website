@@ -67,6 +67,19 @@ function ProjectGlyph({ kind }) {
         <rect x="50" y="94" width="20" height="2" fill="currentColor" opacity="0.3"/>
       </svg>
     ),
+    wip: (
+      <svg viewBox="0 0 120 120" width="100%" height="100%">
+        <circle cx="60" cy="60" r="38" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.2" strokeDasharray="2 4"/>
+        <g>
+          <circle cx="60" cy="60" r="28" fill="none" stroke="var(--accent)" strokeWidth="1.5" strokeDasharray="70 110" strokeLinecap="round"/>
+          <animateTransform attributeName="transform" type="rotate" from="0 60 60" to="360 60 60" dur="3.2s" repeatCount="indefinite"/>
+        </g>
+        <circle cx="60" cy="60" r="4" fill="var(--accent)">
+          <animate attributeName="r" values="4;2.8;4" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="1;0.45;1" dur="2s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    ),
   };
   return glyphs[kind] || glyphs.extension;
 }
@@ -75,7 +88,7 @@ function ProjectCard({ project, idx }) {
   return (
     <article className="project r-stagger">
       <div className="project-idx">
-        <span>{String(idx + 1).padStart(2, "0")} / 05</span>
+        <span>{String(idx + 1).padStart(2, "0")} / {String(PROJECTS.length).padStart(2, "0")}</span>
       </div>
       <div className="project-meta">
         <span className="project-type">{project.type}</span>
@@ -139,6 +152,12 @@ const PROJECTS = [
     image: "assets/Ride It Out_Green.png?v=20260424-project-images-refresh-3",
     desc: "A native iOS app that guides users through structured anxiety management exercises. Designed to be usable in moments of high stress — clean, calm, useful within seconds of opening.",
     link: "#", linkLabel: "App Store",
+  },
+  {
+    code: "WIP-06", title: "What's Next", type: "In Progress", glyph: "wip",
+    desc: "Currently cooking something new. Got an idea worth building, or a messy problem you'd want solved? Send it over — I'm always open to new projects and collaborations.",
+    link: "mailto:raphaelattar25@gmail.com?subject=Got%20an%20idea%20for%20you",
+    linkLabel: "Share an Idea",
   },
 ];
 
