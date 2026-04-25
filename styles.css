@@ -480,25 +480,6 @@ body::before {
   position: relative;
 }
 
-/* In-progress glyph animation */
-.wip-spin {
-  transform-origin: 60px 60px;
-  animation: wip-rotate 3.2s linear infinite;
-}
-.wip-pulse {
-  transform-origin: 60px 60px;
-  animation: wip-pulse 2s ease-in-out infinite;
-}
-@keyframes wip-rotate {
-  to { transform: rotate(360deg); }
-}
-@keyframes wip-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.45; transform: scale(0.75); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .wip-spin, .wip-pulse { animation: none; }
-}
 
 /* Grid layout variant */
 .projects-list[data-layout="grid"] {
