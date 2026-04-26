@@ -70,14 +70,10 @@ function ProjectGlyph({ kind }) {
     wip: (
       <svg viewBox="0 0 120 120" width="100%" height="100%">
         <circle cx="60" cy="60" r="38" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.2" strokeDasharray="2 4"/>
-        <g>
+        <g className="wip-spin">
           <circle cx="60" cy="60" r="28" fill="none" stroke="var(--accent)" strokeWidth="1.5" strokeDasharray="70 110" strokeLinecap="round"/>
-          <animateTransform attributeName="transform" type="rotate" from="0 60 60" to="360 60 60" dur="3.2s" repeatCount="indefinite"/>
         </g>
-        <circle cx="60" cy="60" r="4" fill="var(--accent)">
-          <animate attributeName="r" values="4;2.8;4" dur="2s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="1;0.45;1" dur="2s" repeatCount="indefinite"/>
-        </circle>
+        <circle className="wip-pulse" cx="60" cy="60" r="4" fill="var(--accent)"/>
       </svg>
     ),
   };

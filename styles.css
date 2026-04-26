@@ -482,6 +482,28 @@ body::before {
   position: relative;
 }
 
+/* In-progress glyph animation */
+.wip-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: wip-rotate 3.2s linear infinite;
+}
+.wip-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: wip-pulse 2s ease-in-out infinite;
+}
+@keyframes wip-rotate {
+  to { transform: rotate(360deg); }
+}
+@keyframes wip-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.75); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wip-spin, .wip-pulse { animation: none; }
+}
+
 
 /* Grid layout variant */
 .projects-list[data-layout="grid"] {
@@ -989,6 +1011,7 @@ body::before {
   transition: opacity 0.8s cubic-bezier(.2,.8,.2,1), transform 0.9s cubic-bezier(.2,.8,.2,1);
 }
 .r-stagger > * { transform: translateY(22px); }
+.r-stagger > .project-vis { display: flex; }
 .in .r-word, .in .r-line, .in.r-stagger > *, .in .r-stagger > *  {
   opacity: 1; transform: translateY(0);
 }
