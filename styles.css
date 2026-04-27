@@ -447,7 +447,7 @@ body::before {
   position: relative;
   overflow: hidden;
   display: flex; align-items: center; justify-content: center;
-  justify-self: center;
+  justify-self: start;
   transition: transform 0.5s cubic-bezier(.2,.8,.2,1), border-color 0.3s;
 }
 .project:hover .project-vis { border-color: var(--rule-strong); }
