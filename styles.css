@@ -482,6 +482,10 @@ body::before {
   position: relative;
 }
 
+@media (max-width: 860px) {
+  .project-vis { width: 100%; }
+}
+
 /* In-progress glyph animation */
 .wip-spin {
   transform-box: fill-box;
@@ -512,7 +516,7 @@ body::before {
   background: var(--rule);
   border: 1px solid var(--rule);
 }
-@media (max-width: 720px) {
+@media (max-width: 860px) {
   .projects-list[data-layout="grid"] { grid-template-columns: 1fr; }
 }
 .projects-list[data-layout="grid"] .project {
@@ -671,6 +675,37 @@ body::before {
     grid-column: 1;
   }
   .tz-entry.tz-left .t-branch-label { flex-direction: row; }
+
+  .tz-spine line[stroke-dasharray],
+  .tz-spine circle { stroke: var(--fg-faint); fill: var(--fg-faint); }
+
+  .tz-connector {
+    height: 12px;
+    margin-top: 28px;
+    margin-left: -20px;
+    position: relative;
+  }
+  .tz-connector svg { display: none; }
+  .tz-connector::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    right: 0;
+    top: 50%;
+    border-top: 1px dashed var(--fg-faint);
+  }
+  .tz-connector::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--fg-faint);
+  }
+  .tz-entry.tz-present .tz-connector::after { background: var(--accent); }
 }
 
 .t-entry {
@@ -875,6 +910,24 @@ body::before {
 }
 @media (max-width: 720px) {
   .tools-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .tools-legend { display: none; }
+
+  .tools-wrap[data-layout="field"] .tools-field { display: none; }
+  .tools-wrap[data-layout="field"] .tools-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .tools-cat { border-right: none; }
+  .tools-cat li { display: flex; align-items: center; gap: 10px; }
+  .tools-cat li .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--fg-faint); flex: none;
+  }
+  .tools-cat[data-cat="ai"] li .dot { background: var(--accent); }
+  .tools-cat[data-cat="auto"] li .dot { background: #9DB4C0; }
+  .tools-cat[data-cat="ops"] li .dot { background: #F0C869; }
+  .tools-cat[data-cat="design"] li .dot { background: #E27A6B; }
 }
 .tools-cat {
   padding: 28px;
@@ -1422,6 +1475,7 @@ body::before {
   position: relative;
   width: 100%;
   height: 100%;
+  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   transition: transform 0.7s cubic-bezier(.7, 0, .3, 1);
 }
@@ -1432,10 +1486,11 @@ body::before {
   inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  transform: translateZ(0.01px);
 }
 
 .gsh-tile-back {
-  transform: rotateX(180deg);
+  transform: translateZ(0.01px) rotateX(180deg);
   padding: 0;
 }
 
