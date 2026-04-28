@@ -215,6 +215,10 @@ function Lightbox({ project, imageIndex, onClose, onSetIndex }) {
 
   const next = () => onSetIndex(nextIndex);
   const prev = () => onSetIndex(prevIndex);
+  const runNavAction = (action) => (e) => {
+    action();
+    e.currentTarget.blur();
+  };
 
   useEffect(() => {
     const scrollY = window.scrollY;
@@ -334,7 +338,7 @@ function Lightbox({ project, imageIndex, onClose, onSetIndex }) {
           <button
             type="button"
             className="lightbox-mobile-nav-button lightbox-mobile-nav-prev"
-            onClick={prev}
+            onClick={runNavAction(prev)}
             aria-label="Previous image"
           >
             <span aria-hidden="true">◂</span>
@@ -343,7 +347,7 @@ function Lightbox({ project, imageIndex, onClose, onSetIndex }) {
           <button
             type="button"
             className="lightbox-mobile-nav-button lightbox-mobile-nav-next"
-            onClick={next}
+            onClick={runNavAction(next)}
             aria-label="Next image"
           >
             <span>Next</span>

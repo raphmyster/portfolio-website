@@ -17,6 +17,16 @@ if ! rg -Fq 'className="lightbox-mobile-nav-button lightbox-mobile-nav-next"' ga
   exit 1
 fi
 
+if ! rg -Fq 'const runNavAction = (action) => (e) => {' gallery.jsx; then
+  echo "expected lightbox mobile navigation to use a dedicated action wrapper"
+  exit 1
+fi
+
+if ! rg -Fq 'e.currentTarget.blur();' gallery.jsx; then
+  echo "expected mobile lightbox navigation buttons to clear focus after tap"
+  exit 1
+fi
+
 if ! rg -Fq 'const enableSwipeNavigation = window.matchMedia("(min-width: 721px)").matches;' gallery.jsx; then
   echo "expected swipe navigation to be disabled on the mobile layout"
   exit 1
