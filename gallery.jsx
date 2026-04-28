@@ -156,7 +156,7 @@ function GalleryTile({ project, index, onOpen }) {
         onClick={() => onOpen(index, 0)}
         aria-label={`Open ${project.title} gallery`}
       >
-        <div className="gsh-tile-flipper">
+        <div className="gsh-tile-flipper" data-slug={project.slug}>
           <div className="gsh-tile-front gsh-frame" style={{ color: "var(--fg-dim)" }}>
             <GalleryGlyph glyph={project.glyph} />
             <span className="gsh-num">{String(index + 1).padStart(2, "0")}</span>
@@ -336,8 +336,10 @@ function Lightbox({ project, imageIndex, onClose, onSetIndex }) {
 }
 
 function Gallery() {
-  const { useEffect, useState } = React;
+  const { useEffect, useRef, useState } = React;
   const [lightbox, setLightbox] = useState(null);
+  const lightboxOpenedRef = useRef(false);
+  const cycleTimersRef = useRef([]);
 
   const findBySlug = (slug) => GALLERY_PROJECTS.findIndex((project) => project.slug === slug);
 
@@ -414,12 +416,94 @@ function Gallery() {
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
+  useEffect(() => {
+    if (!lightbox) return;
+    lightboxOpenedRef.current = true;
+    cycleTimersRef.current.forEach((id) => clearTimeout(id));
+    cycleTimersRef.current = [];
+  }, [lightbox]);
+
+  useEffect(() => {
+    const hoverCapable = window.matchMedia("(hover: hover)").matches;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (hoverCapable || reducedMotion) return;
+
+    const order = ["deer-lady", "viewpoint", "dead-set-on-living", "bob-does-sports"];
+    const FLIP_MS = 700;
+    const HOLD_MS = 2000;
+
+    const schedule = (fn, delay) => {
+      const id = setTimeout(() => {
+        cycleTimersRef.current = cycleTimersRef.current.filter((t) => t !== id);
+        if (lightboxOpenedRef.current) return;
+        fn();
+      }, delay);
+      cycleTimersRef.current.push(id);
+    };
+
+    const flippers = () => document.querySelectorAll(".gallery-sheet .gsh-tile-flipper");
+    const flipOn = (slug) => {
+      flippers().forEach((el) => {
+        if (el.dataset.slug === slug) el.classList.add("is-flipped");
+      });
+    };
+    const flipAllOff = () => {
+      flippers().forEach((el) => el.classList.remove("is-flipped"));
+    };
+
+    const startCycle = () => {
+      if (lightboxOpenedRef.current) return;
+      let t = 0;
+      for (let cycle = 0; cycle < 2; cycle++) {
+        order.forEach((slug, i) => {
+          schedule(() => flipOn(slug), t + i * FLIP_MS);
+        });
+        t += order.length * FLIP_MS + HOLD_MS;
+        schedule(flipAllOff, t);
+        t += FLIP_MS;
+        if (cycle < 1) t += HOLD_MS;
+      }
+    };
+
+    const target = document.querySelector(".gallery-sheet");
+    let observer = null;
+    let started = false;
+    const tryStart = () => {
+      if (started) return;
+      started = true;
+      startCycle();
+    };
+
+    if (target && typeof IntersectionObserver !== "undefined") {
+      observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            tryStart();
+            observer.disconnect();
+            observer = null;
+            break;
+          }
+        }
+      }, { threshold: 0.2 });
+      observer.observe(target);
+    } else {
+      tryStart();
+    }
+
+    return () => {
+      if (observer) observer.disconnect();
+      cycleTimersRef.current.forEach((id) => clearTimeout(id));
+      cycleTimersRef.current = [];
+    };
+  }, []);
+
   return (
     <div className="gallery-sheet">
       <div className="gsh-header">
-        <span>CONTACT SHEET / 01</span>
-        <span>RAA — DESIGN WORK 2017-2026</span>
-        <span>{GALLERY_PROJECTS.length} / {GALLERY_PROJECTS.length}</span>
+        <span className="gsh-meta gsh-meta-desktop">PROJECT INDEX / 01</span>
+        <span className="gsh-meta gsh-meta-desktop">RA — DESIGN WORK 2017-2026</span>
+        <span className="gsh-meta gsh-meta-mobile">RA-DESIGN 2017-2026</span>
+        <span className="gsh-meta">{GALLERY_PROJECTS.length} / {GALLERY_PROJECTS.length}</span>
       </div>
       <div className="gsh-grid">
         {GALLERY_PROJECTS.map((project, index) => (
@@ -427,9 +511,9 @@ function Gallery() {
         ))}
       </div>
       <div className="gsh-footer">
-        <span>▸ RAA-PORTFOLIO-2026</span>
-        <span>HOSPITALITY / PLAY / EXPERIENCE</span>
-        <span>{new Date().getFullYear()}</span>
+        <span className="gsh-meta">▸ RA-PORTFOLIO</span>
+        <span className="gsh-meta gsh-meta-desktop">HOSPITALITY / PLAY / EXPERIENTIAL</span>
+        <span className="gsh-meta">{new Date().getFullYear()}</span>
       </div>
       {lightbox && (
         <Lightbox
