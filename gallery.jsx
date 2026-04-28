@@ -259,9 +259,10 @@ function Lightbox({ project, imageIndex, onClose, onSetIndex }) {
     const touch = e.changedTouches[0];
     const dx = touch.clientX - touchStart.current.x;
     const dy = touch.clientY - touchStart.current.y;
+    const enableSwipeNavigation = window.matchMedia("(min-width: 721px)").matches;
     touchStart.current = null;
 
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+    if (enableSwipeNavigation && Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
       if (dx < 0) next();
       else prev();
       return;
@@ -327,6 +328,27 @@ function Lightbox({ project, imageIndex, onClose, onSetIndex }) {
               aria-label={`Go to image ${i + 1}`}
             />
           ))}
+        </div>
+
+        <div className="lightbox-mobile-nav">
+          <button
+            type="button"
+            className="lightbox-mobile-nav-button lightbox-mobile-nav-prev"
+            onClick={prev}
+            aria-label="Previous image"
+          >
+            <span aria-hidden="true">◂</span>
+            <span>Prev</span>
+          </button>
+          <button
+            type="button"
+            className="lightbox-mobile-nav-button lightbox-mobile-nav-next"
+            onClick={next}
+            aria-label="Next image"
+          >
+            <span>Next</span>
+            <span aria-hidden="true">▸</span>
+          </button>
         </div>
 
         <div className="lightbox-hint">← → keys · ESC to close</div>
