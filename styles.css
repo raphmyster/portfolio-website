@@ -1816,10 +1816,16 @@ body::before {
   transition: background 0.2s, color 0.2s;
 }
 
-.lightbox-mobile-nav-button:hover,
 .lightbox-mobile-nav-button:focus-visible {
   background: var(--accent);
   color: var(--bg);
+}
+
+@media (hover: hover) {
+  .lightbox-mobile-nav-button:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
 }
 
 .lightbox-hint {

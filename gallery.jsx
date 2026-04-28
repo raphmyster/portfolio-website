@@ -264,6 +264,7 @@ function Lightbox({ project, imageIndex, onClose, onSetIndex }) {
     const dx = touch.clientX - touchStart.current.x;
     const dy = touch.clientY - touchStart.current.y;
     const enableSwipeNavigation = window.matchMedia("(min-width: 721px)").matches;
+    const tappedImage = e.target.closest(".lightbox-image, .lightbox-image-fallback");
     touchStart.current = null;
 
     if (enableSwipeNavigation && Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
@@ -277,7 +278,7 @@ function Lightbox({ project, imageIndex, onClose, onSetIndex }) {
       return;
     }
 
-    if (Math.abs(dx) < 10 && Math.abs(dy) < 10) {
+    if (tappedImage && Math.abs(dx) < 10 && Math.abs(dy) < 10) {
       setChromeHidden((current) => !current);
     }
   };

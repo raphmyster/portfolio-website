@@ -27,6 +27,16 @@ if ! rg -Fq 'e.currentTarget.blur();' gallery.jsx; then
   exit 1
 fi
 
+if ! rg -Fq 'const tappedImage = e.target.closest(".lightbox-image, .lightbox-image-fallback");' gallery.jsx; then
+  echo "expected lightbox chrome toggle to be limited to taps on the image area"
+  exit 1
+fi
+
+if ! rg -Fq 'if (tappedImage && Math.abs(dx) < 10 && Math.abs(dy) < 10) {' gallery.jsx; then
+  echo "expected control taps to avoid toggling the lightbox chrome"
+  exit 1
+fi
+
 if ! rg -Fq 'const enableSwipeNavigation = window.matchMedia("(min-width: 721px)").matches;' gallery.jsx; then
   echo "expected swipe navigation to be disabled on the mobile layout"
   exit 1
@@ -34,6 +44,21 @@ fi
 
 if ! rg -Fq '.lightbox-mobile-nav {' styles.css; then
   echo "expected styles for the mobile lightbox navigation row"
+  exit 1
+fi
+
+if ! rg -Fq '@media (hover: hover) {' styles.css; then
+  echo "expected hover-only styles to be scoped to hover-capable devices"
+  exit 1
+fi
+
+if ! rg -Fq '.lightbox-mobile-nav-button:hover {' styles.css; then
+  echo "expected a dedicated hover rule for mobile nav buttons"
+  exit 1
+fi
+
+if ! rg -Fq '.lightbox-mobile-nav-button:focus-visible {' styles.css; then
+  echo "expected a dedicated focus-visible rule for mobile nav buttons"
   exit 1
 fi
 
