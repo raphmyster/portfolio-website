@@ -121,6 +121,9 @@ body::before {
 
 .nav-right { display: flex; align-items: center; gap: 20px; }
 .nav-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--mono);
   font-size: 11px;
   text-transform: uppercase;
@@ -128,8 +131,44 @@ body::before {
   color: var(--fg-dim);
   transition: color 0.2s ease;
 }
+.nav-social-icon {
+  display: none;
+  width: 22px;
+  height: 22px;
+}
+.nav-social-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .nav-social:hover,
 .nav-social:focus-visible { color: var(--fg); }
+@media (max-width: 720px) {
+  .nav-inner {
+    gap: 16px;
+  }
+
+  .nav-right {
+    gap: 8px;
+  }
+
+  .nav-social {
+    min-width: 34px;
+    min-height: 34px;
+  }
+
+  .nav-social-text {
+    display: none;
+  }
+
+  .nav-social-icon {
+    display: inline-block;
+  }
+
+  .nav-social-github {
+    display: none;
+  }
+}
 
 /* --- Section framing --- */
 .section {
