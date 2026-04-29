@@ -8,7 +8,7 @@
 
 **Goal:** Replace the text-only Chapter 1 "Focus" section with an AI-dominant Venn diagram (Design + Ops + Sales feeding into AI) paired with a Now/Doing/Open To status board.
 
-**Architecture:** New React component (`focus.jsx`) renders the Venn SVG and status board side-by-side. The existing chapter header (`section-head` block in `index.html`) is preserved; only the body content is replaced. CSS lives in `styles.css` alongside other section-scoped blocks. All theming flows through existing CSS custom properties so light mode works automatically.
+**Architecture:** New React component (`focus.jsx`) renders the Venn SVG and status board side-by-side and mounts into a new `#focus-mount` placeholder inside the existing `#focus` section. The chapter header stays in `index.html`, but the title text changes from `What I'm Focused On` to `Focus`. CSS lives in `styles.css` alongside other section-scoped blocks. All theming flows through existing CSS custom properties so light mode works automatically.
 
 **Tech Stack:** Vanilla static site — no build step. React 18 + Babel Standalone (CDN), inline SVG, vanilla CSS. Components use the project's `.jsx`-with-globals pattern: function components reference `React`/`ReactDOM` from `window`, files end with `window.<ComponentName> = <ComponentName>`, and rendering is wired up in the inline script at the bottom of `index.html`.
 
@@ -20,7 +20,7 @@ These are baked into the codebase. Follow them exactly.
 
 1. **No build, no bundler.** `.jsx` files are loaded as `<script type="text/babel" data-presets="react">` from `index.html` and compiled in-browser. Do not introduce ES module syntax (`import`/`export`). Components reference `React` and `ReactDOM` as globals and destructure hooks from them: `const { useEffect } = React;`.
 2. **Cache busting.** Every script and stylesheet `src` in `index.html` carries a `?v=YYYYMMDD-<tag>` query. When you modify a file referenced from `index.html`, bump the version. For new files, add a fresh version string.
-3. **Theming.** Never hardcode hex colors in component code or inline SVG. Use `var(--accent)`, `var(--fg)`, `var(--fg-dim)`, `var(--fg-faint)`, `var(--rule)`, `var(--rule-strong)`, or `currentColor`. The site has a dark/light theme toggle that swaps these values.
+3. **Theming.** Never hardcode hex colors in component code or inline SVG. Use `var(--accent)`, `var(--fg)`, `var(--fg-dim)`, `var(--fg-faint)`, `var(--rule)`, `var(--rule-strong)`, or `currentColor`. There is no `--fg-mute` token in this repo. The site supports dark/light theming by swapping these custom-property values.
 4. **Animation classes.** Existing helpers in `anim.js`:
    - `.reveal` — adds `.in` when scrolled into view; pair with CSS transitions on the `.reveal` element.
    - `.scramble` — text scrambles in on first reveal (already on the section title).
@@ -214,13 +214,14 @@ function Focus() {
 window.Focus = Focus;
 ```
 
-- [ ] **Step 2: Verify the file is syntactically valid**
+- [ ] **Step 2: Sanity-check the structure before wiring**
 
-Run: `node --check focus.jsx`
+Before touching `index.html`, confirm the file matches the project's existing React pattern:
+- no `import` / `export`
+- component assigned with `window.Focus = Focus`
+- JSX contains a single root block for the section body
 
-Expected: parsing fails with a JSX-related error (Node can't parse JSX), but the *non-JSX* parts must be free of trailing comma / unbalanced brace errors. If the only error is JSX-syntax-related, the file is fine. If there are other errors (e.g. "Unexpected token" outside the JSX), fix them.
-
-A more reliable check: open the project in your editor and let Babel/ESLint validate. Or wait for the browser test in Task 4 — the inline Babel will throw a clear error in the browser console if there's a syntax problem.
+Do not use `node --check` here; Node cannot parse the Babel-in-browser JSX used by this project. The real syntax check happens once the file is loaded through the browser in Task 2.
 
 - [ ] **Step 3: Commit**
 
@@ -560,41 +561,17 @@ git commit -m "feat(focus): style venn + status board, drop legacy focus prose"
 
 ---
 
-## Task 4: Verify the draw-on-scroll animation
+## Task 4: Finalize and verify the draw-on-scroll animation
 
-**Files:** none modified — this is a verification task.
+**Files:**
+- Modify: `focus.jsx`
+- Modify: `index.html`
 
 The existing `observeSvgDraws()` helper in `anim.js` handles `.draw-line` SVG elements automatically. The component already adds `class="draw-line"` to all four circles (one AI + three satellites). When the section scrolls into view, the helper sets `--len` to each circle's path length and adds `.in`, transitioning `stroke-dashoffset` to 0.
 
-- [ ] **Step 1: Verify draw-in animation**
+- [ ] **Step 1: Add staggered draw delays for AI → Design → Ops → Sales**
 
-In your browser:
-1. Hard-refresh the page (Cmd+Shift+R / Ctrl+Shift+R) and scroll to the top.
-2. Slowly scroll down toward Chapter 1.
-3. As the Focus section enters the viewport, all four circles (AI + 3 satellites) should trace in — each circle's outline draws clockwise/counter-clockwise from a starting point.
-
-Expected behavior:
-- Circles start invisible (or with their stroke offset all the way around)
-- As the section enters view, strokes draw to completion
-- Status rows fade in with their stagger (90ms steps)
-
-If the circles do not draw at all and instead appear instantly, check that `class="draw-line"` is correctly applied to each `<circle>` element in the rendered SVG (DevTools → Elements). The `observeSvgDraws()` polling loop in `anim.js` should pick up the React-mounted circles within ~3 seconds of mount.
-
-If you want the satellites to draw *after* the AI circle for a sequential feel, add `style={{ transitionDelay: "..." }}` to each satellite circle — e.g. AI starts at 0ms, Design at 200ms, Ops at 350ms, Sales at 500ms. This is optional polish; if the simultaneous draw looks fine, leave it.
-
-- [ ] **Step 2: Verify reduced-motion behavior**
-
-In Chrome DevTools: open the Rendering panel (Cmd+Shift+P → "Show Rendering") and set `Emulate CSS prefers-reduced-motion: reduce`.
-
-Refresh the page. Expected:
-- Circles appear in their final state (no draw animation)
-- Status rows appear in final state (no fade/slide)
-
-Reset the emulation when done.
-
-- [ ] **Step 3: Add staggered draw delays for AI → Design → Ops → Sales**
-
-The spec calls for circles to trace in sequentially: AI first, then Design, Ops, Sales. Modify `focus.jsx` to add `transition-delay` per satellite.
+The spec requires sequential traces, not simultaneous draw-in. Modify `focus.jsx` to add `transition-delay` per satellite.
 
 In the satellite map, add `style={{ transitionDelay: ... }}` to each circle:
 
@@ -622,7 +599,31 @@ In the satellite map, add `style={{ transitionDelay: ... }}` to each circle:
 
 The AI circle keeps its default 0ms delay (drawn first). Satellites then draw at 200ms / 350ms / 500ms.
 
-Bump the `?v=` on the `focus.jsx` script tag in `index.html` to invalidate the browser cache (e.g. `?v=20260428-focus-stagger`).
+Bump the `?v=` on the `focus.jsx` script tag in `index.html` to invalidate the browser cache (for example `?v=20260428-focus-stagger`).
+
+- [ ] **Step 2: Verify draw-in animation**
+
+In your browser:
+1. Hard-refresh the page (Cmd+Shift+R / Ctrl+Shift+R) and scroll to the top.
+2. Slowly scroll down toward Chapter 1.
+3. As the Focus section enters the viewport, all four circles (AI + 3 satellites) should trace in — each circle's outline draws clockwise/counter-clockwise from a starting point.
+
+Expected behavior:
+- Circles start invisible (or with their stroke offset all the way around)
+- As the section enters view, strokes draw to completion
+- Status rows fade in with their stagger (90ms steps)
+
+If the circles do not draw at all and instead appear instantly, check that `class="draw-line"` is correctly applied to each `<circle>` element in the rendered SVG (DevTools → Elements). The `observeSvgDraws()` polling loop in `anim.js` should pick up the React-mounted circles within ~3 seconds of mount.
+
+- [ ] **Step 3: Verify reduced-motion behavior**
+
+In Chrome DevTools: open the Rendering panel (Cmd+Shift+P → "Show Rendering") and set `Emulate CSS prefers-reduced-motion: reduce`.
+
+Refresh the page. Expected:
+- Circles appear in their final state (no draw animation)
+- Status rows appear in final state (no fade/slide)
+
+Reset the emulation when done.
 
 - [ ] **Step 4: Re-verify the staggered draw**
 
@@ -686,7 +687,7 @@ Resize the browser to ~375px width:
 
 - Run a screen reader (macOS: Cmd+F5 → VoiceOver) or use Chrome DevTools Accessibility panel to inspect the Venn `<svg>`
 - The SVG should announce as "Focus diagram" with the description text
-- Each satellite group should announce its discipline + headline + sub via `aria-label`
+- The satellite metadata should exist in the markup via group `aria-label`s or nested `<title>` elements, without introducing focusable controls inside the SVG
 - Tab through the page: focus order should not break (the SVG is decorative, no interactive elements inside)
 
 - [ ] **Step 6: Console clean**

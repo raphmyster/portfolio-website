@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260427-mobile-nav-social-icons" />
+  <link rel="stylesheet" href="styles.css?v=20260428-focus-solid-sat" />
 </head>
 <body>
 
@@ -92,28 +92,9 @@
   <section id="focus" class="section" data-screen-label="02 Focus">
     <div class="section-head">
       <div class="chapter" data-parallax="0.12"><span class="num">01</span>CHAPTER</div>
-      <h2 class="section-title scramble reveal">What I'm Focused On</h2>
+      <h2 class="section-title scramble reveal">Focus</h2>
     </div>
-    <div class="focus-body">
-      <div class="chapter" data-parallax="0.25">
-        <div>ABOUT</div>
-        <div style="margin-top:6px;color:var(--fg-faint)">2026</div>
-      </div>
-      <div class="focus-prose">
-        <p class="focus-lead split-words reveal">
-          I'm interested in helping people turn AI into something useful.
-        </p>
-        <p class="focus-support split-words reveal">
-          Especially people who know it matters, but don't yet know what to do with it in practice. I care about turning vague curiosity into something useful:
-        </p>
-        <ul class="focus-outcomes reveal">
-          <li>Better workflow</li>
-          <li>Small tool</li>
-          <li>Automation</li>
-          <li>Product that saves time</li>
-        </ul>
-      </div>
-    </div>
+    <div id="focus-mount"></div>
   </section>
 
   <section id="projects" class="section" data-screen-label="03 Projects">
@@ -236,6 +217,7 @@
 <script src="anim.js?v=20260424-chapter-scramble"></script>
 <script type="text/babel" data-presets="react" src="projects.jsx?v=20260425-wip-vis-flex"></script>
 <script type="text/babel" data-presets="react" src="tools.jsx?v=20260424-tools-scatter-8"></script>
+<script type="text/babel" data-presets="react" src="focus.jsx?v=20260428-focus-viewbox-crop"></script>
 <script type="text/babel" data-presets="react" src="hex.jsx?v=20260422-project-images"></script>
 <script type="text/babel" data-presets="react" src="hero-meta.jsx?v=20260422-project-images"></script>
 <script type="text/babel" data-presets="react" src="gallery.jsx?v=20260427-design-work-mobile-nav"></script>
@@ -244,6 +226,9 @@
 <script type="text/babel" data-presets="react">
   const heroMetaEl = document.getElementById("hero-meta-mount");
   if (heroMetaEl) ReactDOM.createRoot(heroMetaEl).render(<HeroMeta />);
+
+  const focusEl = document.getElementById("focus-mount");
+  if (focusEl) ReactDOM.createRoot(focusEl).render(<Focus />);
 
   const hexEl = document.getElementById("hex-centerpiece-mount");
   if (hexEl) ReactDOM.createRoot(hexEl).render(<HexCenterpiece />);

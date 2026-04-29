@@ -50,7 +50,7 @@ This was selected over a centerpiece layout (Venn dominant, status below) and a 
 A Venn-style composition with one large central circle (AI) and three smaller satellite circles (Design, Ops, Sales) overlapping into the central circle. AI is visually dominant through three reinforcing signals:
 
 - **Size:** AI circle larger than satellites
-- **Color:** AI stroke uses `var(--accent)` (phosphor green); satellites use `var(--fg-mute)` (gray)
+- **Color:** AI stroke uses `var(--accent)` (phosphor green); satellites use `var(--fg-faint)` (gray)
 - **Stroke weight:** AI stroke ~1.6px; satellite strokes ~1px
 
 The three satellites are positioned at top-left, top-right, and bottom-center, each overlapping into the AI circle.
@@ -85,15 +85,15 @@ Satellites should be large enough to comfortably nest all three layers of text (
 
 ### Motion
 
-- **Draw-on-scroll:** when the section enters the viewport, circles trace in (AI circle first, then satellites in sequence — Design → Ops → Sales). Text fades in after the circles complete. Matches the existing `draw-line` animation in `timeline.jsx` / `tz-spine`.
+- **Draw-on-scroll:** when the section enters the viewport, circles trace in using the site's existing `.draw-line` / `observeSvgDraws()` pattern (AI circle first, then satellites in sequence — Design → Ops → Sales). Text fades in after the circles complete.
 - **Hover state:** hovering a satellite raises that satellite's stroke to ~1.4px and brightens its discipline label; the other satellites dim slightly (e.g., reduce opacity to 0.6). Reinforces the "discipline feeds into AI" idea. Hover state is desktop-only — disabled on touch devices.
 - No pulse/breathing animation — keep it static after draw-in.
 
 ### Accessibility
 
 - SVG `<title>` and `<desc>` describe the diagram for screen readers: e.g., *"A Venn diagram with AI at the center, overlapped by three disciplines: Design, Operations, and Sales."*
-- Each satellite circle group is given a discrete `aria-label` containing its discipline + headline + subline as a single string.
-- All decorative geometry has `aria-hidden="true"`.
+- Each satellite group should carry its own accessible string in markup (for example via a group `aria-label` or nested `<title>`), but the root SVG announcement is the required baseline. Do not make the groups interactive or focusable.
+- Decorative wrappers should stay out of the accessibility tree.
 - Honors `prefers-reduced-motion`: skip draw-on-scroll, render circles in their final state.
 
 ## Component 2: Now / Doing / Open To Status Board (Right Column)
@@ -141,13 +141,13 @@ Below the breakpoint where the two-column layout becomes cramped (likely `~860px
 All colors flow through CSS custom properties already in `:root` and `[data-theme="light"]`:
 
 - AI stroke: `var(--accent)`
-- Satellite stroke: `var(--fg-mute)`
+- Satellite stroke: `var(--fg-faint)`
 - AI label fill: `var(--accent)`
 - Headline fills: `var(--fg)`
-- Subline fills: `var(--fg-mute)`
+- Subline fills: `var(--fg-dim)`
 - Status board labels: `var(--accent)`
 - Status board headlines: `var(--fg)`
-- Status board sublines: `var(--fg-mute)`
+- Status board sublines: `var(--fg-dim)`
 - Row dividers: `var(--rule)`
 
 No hardcoded hex values in the SVG — all strokes and fills must use CSS custom properties (or `currentColor` where appropriate) so the light theme works without modification.
@@ -167,5 +167,6 @@ Site section order is unchanged: Focus → Projects → History → Tools → Ga
 
 - The Venn is best implemented as inline SVG within a new component or as part of an updated section block. A React component (`focus.jsx`) following the existing `.jsx` pattern (Babel-in-browser, global React) is consistent with the rest of the site.
 - The status board can be plain HTML inside the section markup (no React needed) — but if the Venn becomes a component, keeping the whole section in one component is cleaner.
+- Use the project's existing color tokens only. `--fg-mute` is not present in this codebase; use `--fg-faint` for neutral strokes and `--fg-dim` for muted supporting text.
 - Cache-bust the new files via `?v=YYYYMMDD-<tag>` query strings per the project convention.
 - The existing `focus-prose` / `focus-lead` / `focus-support` / `focus-outcomes` markup and styling can be removed once the new section ships.
