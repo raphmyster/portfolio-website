@@ -111,7 +111,7 @@ function ProjectCard({ project, idx }) {
             style={project.imageStyle}
           />
         ) : (
-          <div className="glyph"><ProjectGlyph kind={project.glyph} /></div>
+          <div className={`glyph${project.glyph === "wip" ? " glyph-wip" : ""}`}><ProjectGlyph kind={project.glyph} /></div>
         )}
       </div>
     </article>
@@ -122,7 +122,7 @@ const PROJECTS = [
   {
     code: "OCS-01", title: "One Click Saver", type: "Chrome Extension", glyph: "extension",
     image: "assets/One_Click_Saver_Green.png?v=20260424-project-images-refresh-3",
-    desc: "A Chrome extension that captures FF&E product data from manufacturer websites in a single click. Built to solve a workflow I watched designers struggle with — pulling specs into spreadsheets one field at a time.",
+    desc: "A Chrome extension that captures FF&E product data from manufacturer websites in a single click. Built to solve a workflow I watched designers struggle with: pulling specs into spreadsheets one field at a time.",
     link: "#", linkLabel: "Chrome Web Store",
   },
   {
@@ -134,24 +134,24 @@ const PROJECTS = [
   {
     code: "SDP-03", title: "Sidepad", type: "Chrome Extension", glyph: "sidepanel",
     image: "assets/Sidepad_Green.png?v=20260424-project-images-refresh-3",
-    desc: "A side panel companion for capturing and structuring AI-generated content from any conversation or webpage. Saves locally as markdown — no cloud, no account.",
+    desc: "A side panel companion for capturing and structuring AI-generated content from any conversation or webpage. Saves locally as markdown, with no cloud and no account.",
     link: "#", linkLabel: "Chrome Web Store",
   },
   {
     code: "LTP-04", title: "Litepad", type: "macOS App", glyph: "macapp",
     image: "assets/Litepad_Green.png?v=20260424-project-images-refresh-3",
-    desc: "A native markdown reader for Mac — like Adobe Reader, but for .md files. Forked from MarkEdit and repositioned for the growing audience receiving markdown from AI tools.",
+    desc: "A native markdown reader for Mac, like Adobe Reader for .md files. Forked from MarkEdit and repositioned for the growing audience receiving markdown from AI tools.",
     link: "#", linkLabel: "Mac App Store",
   },
   {
     code: "RIO-05", title: "Ride It Out", type: "iOS App", glyph: "ios",
     image: "assets/Ride It Out_Green.png?v=20260424-project-images-refresh-3",
-    desc: "A native iOS app that guides users through structured anxiety management exercises. Designed to be usable in moments of high stress — clean, calm, useful within seconds of opening.",
+    desc: "A native iOS app that guides users through structured anxiety management exercises. Designed to be usable in moments of high stress. Clean, calm, and useful within seconds of opening.",
     link: "#", linkLabel: "App Store",
   },
   {
     code: "WIP-06", title: "What's Next", type: "In Progress", glyph: "wip",
-    desc: "Currently cooking something new. Got an idea worth building, or a messy problem you'd want solved? Send it over — I'm always open to new projects and collaborations.",
+    desc: "Currently cooking something new. Got an idea worth building, or a messy problem you'd want solved? Send it over. I'm always open to new projects and collaborations.",
     link: "mailto:raphaelattar25@gmail.com?subject=Got%20an%20idea%20for%20you",
     linkLabel: "Share an Idea",
   },

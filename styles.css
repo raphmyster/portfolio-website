@@ -164,10 +164,6 @@ body::before {
   .nav-social-icon {
     display: inline-block;
   }
-
-  .nav-social-github {
-    display: none;
-  }
 }
 
 /* --- Section framing --- */
@@ -669,6 +665,9 @@ body::before {
   width: 38%;
   aspect-ratio: 1;
   position: relative;
+}
+.project-vis .glyph.glyph-wip {
+  transform: translateY(10px);
 }
 
 @media (max-width: 860px) {

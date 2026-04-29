@@ -2,24 +2,24 @@
 
 const TIMELINE = [
   {
-    years: "2025 — Present", label: "NOW / AI",
+    years: "2025 - Present", label: "NOW / AI",
     title: "Building with AI",
-    body: "Personal projects using AI-assisted development tools. Chrome extensions, native apps, automation pipelines — most of them solving problems I encountered myself.",
+    body: "Personal projects using AI-assisted development tools. Chrome extensions, native apps, and automation pipelines, most of them solving problems I encountered myself.",
     branch: true, now: true,
   },
   {
-    years: "2019 — Present", label: "NOW / OPS",
+    years: "2019 - Present", label: "NOW / OPS",
     title: "Credit Sesame",
     body: "Marketing operations at a consumer fintech. CRM, lifecycle automation, attribution, and the systems behind how a financial product actually grows.",
     branch: true, now: true,
   },
   {
-    years: "2013 — 2019",
+    years: "2013 - 2019",
     title: "Design & Sales",
-    body: "Various roles in design-adjacent sales. Learned how design products get specified, sold, and used — and started seeing workflows that felt obviously broken.",
+    body: "Various roles in design-adjacent sales. Learned how design products get specified, sold, and used, and started seeing workflows that felt obviously broken.",
   },
   {
-    years: "2009 — 2013",
+    years: "2009 - 2013",
     title: "University",
     body: "Architecture and interior design. Learned to think about how people move through spaces, how operations shape physical layouts, and how constraints drive design decisions.",
   },
