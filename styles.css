@@ -364,12 +364,16 @@ body::before {
   transition-timing-function: cubic-bezier(.2,.8,.2,1), ease, ease, ease;
 }
 .focus-ai-label,
-.focus-ai-line,
+.focus-ai-line {
+  opacity: 0;
+  transition: opacity 0.55s ease 1.12s, fill 0.28s ease;
+  pointer-events: none;
+}
 .focus-sat-discipline,
 .focus-sat-headline,
 .focus-sat-sub {
   opacity: 0;
-  transition: opacity 0.55s ease 1.12s, fill 0.28s ease;
+  transition: opacity 0.55s ease var(--focus-text-delay, 1.12s), fill 0.28s ease;
   pointer-events: none;
 }
 .focus-grid.in .focus-ai-label,
@@ -416,6 +420,10 @@ body::before {
 .focus-sat text,
 .focus-ai text {
   dominant-baseline: middle;
+}
+.focus-sat-orbit,
+.focus-sat-content {
+  will-change: transform;
 }
 @media (hover: hover) {
   .focus-venn-svg:hover .focus-sat {

@@ -74,6 +74,25 @@ function splitWords(el) {
   });
 }
 
+function startFocusOrbit() {
+  const reducedMotion = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document.querySelectorAll("#focus .focus-grid.in:not([data-focus-orbit-started])")
+    .forEach((grid) => {
+      grid.dataset.focusOrbitStarted = "1";
+      grid.classList.add("focus-orbit-in");
+      if (reducedMotion) return;
+
+      grid.querySelectorAll(".focus-orbit-anim, .focus-orbit-counter-anim")
+        .forEach((anim) => {
+          try {
+            anim.beginElement();
+          } catch (_) {}
+        });
+    });
+}
+
 /* Reveal via scroll-poll — IntersectionObserver can be flaky in sandboxed iframes */
 let _revealTracked = new Set();
 function _revealCheck() {
@@ -94,6 +113,7 @@ function _revealCheck() {
         staggerKids.forEach((k, i) => { k.style.transitionDelay = (i * 70) + "ms"; });
       }
     });
+  startFocusOrbit();
 }
 function observeReveal() {
   _revealCheck();
@@ -171,5 +191,5 @@ function heroWave() {
 
 Object.assign(window, {
   scrambleElement, splitWords, observeReveal, observeSvgDraws,
-  bindParallax, heroWave, bindChapterTitleScramble,
+  bindParallax, heroWave, bindChapterTitleScramble, startFocusOrbit,
 });

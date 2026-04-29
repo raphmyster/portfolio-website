@@ -12,6 +12,9 @@ const FOCUS_SATELLITES = [
     cy: 140,
     r: 88,
     delay: "220ms",
+    orbitAngle: 212.83,
+    orbitAngleInverse: -212.83,
+    orbitRadius: 184.46,
   },
   {
     pos: "tr",
@@ -22,6 +25,9 @@ const FOCUS_SATELLITES = [
     cy: 140,
     r: 88,
     delay: "380ms",
+    orbitAngle: 327.17,
+    orbitAngleInverse: -327.17,
+    orbitRadius: 184.46,
   },
   {
     pos: "b",
@@ -32,6 +38,9 @@ const FOCUS_SATELLITES = [
     cy: 432,
     r: 88,
     delay: "540ms",
+    orbitAngle: 90,
+    orbitAngleInverse: -90,
+    orbitRadius: 192,
   },
 ];
 
@@ -59,33 +68,38 @@ const FOCUS_STATUS = [
   },
 ];
 
-function FocusSatelliteText({ satellite }) {
+function FocusSatelliteText({ satellite, x = satellite.cx, y = satellite.cy }) {
+  const textStyle = { "--focus-text-delay": satellite.delay };
+
   return (
     <>
       <text
         className="focus-sat-discipline"
-        x={satellite.cx}
-        y={satellite.cy - 32}
+        x={x}
+        y={y - 32}
         textAnchor="middle"
+        style={textStyle}
       >
         {satellite.discipline}
       </text>
       <text
         className="focus-sat-headline"
-        x={satellite.cx}
-        y={satellite.cy + 2}
+        x={x}
+        y={y + 2}
         textAnchor="middle"
+        style={textStyle}
       >
         {satellite.headline}
       </text>
       <text
         className="focus-sat-sub"
-        x={satellite.cx}
-        y={satellite.cy + 27}
+        x={x}
+        y={y + 27}
         textAnchor="middle"
+        style={textStyle}
       >
         {satellite.subLines.map((line, i) => (
-          <tspan key={line} x={satellite.cx} dy={i === 0 ? 0 : 13}>
+          <tspan key={line} x={x} dy={i === 0 ? 0 : 13}>
             {line}
           </tspan>
         ))}
@@ -143,18 +157,58 @@ function FocusVenn() {
           className={`focus-sat focus-sat-${satellite.pos}`}
           aria-label={`${satellite.discipline}. ${satellite.headline}. ${satellite.subLines.join(" ")}.`}
         >
-          <circle
-            className="focus-sat-circle draw-line"
-            cx={satellite.cx}
-            cy={satellite.cy}
-            r={satellite.r}
-            fill="var(--bg)"
-            fillOpacity="0.82"
-            stroke="var(--fg-faint)"
-            strokeWidth="1"
-            style={{ transitionDelay: satellite.delay }}
-          />
-          <FocusSatelliteText satellite={satellite} />
+          <g
+            className="focus-sat-orbit"
+            transform={`rotate(${satellite.orbitAngle} 270 240)`}
+          >
+            <animateTransform
+              className="focus-orbit-anim"
+              attributeName="transform"
+              type="rotate"
+              from={`${satellite.orbitAngle - 360} 270 240`}
+              to={`${satellite.orbitAngle} 270 240`}
+              dur="1.8s"
+              begin="indefinite"
+              fill="freeze"
+              calcMode="spline"
+              keySplines=".22 .61 .36 1"
+              keyTimes="0;1"
+            />
+            <g transform="translate(270 240)">
+              <g transform={`translate(${satellite.orbitRadius} 0)`}>
+                <g
+                  className="focus-sat-content"
+                  transform={`rotate(${satellite.orbitAngleInverse} 0 0)`}
+                >
+                  <animateTransform
+                    className="focus-orbit-counter-anim"
+                    attributeName="transform"
+                    type="rotate"
+                    from={`${satellite.orbitAngleInverse + 360} 0 0`}
+                    to={`${satellite.orbitAngleInverse} 0 0`}
+                    dur="1.8s"
+                    begin="indefinite"
+                    fill="freeze"
+                    calcMode="spline"
+                    keySplines=".22 .61 .36 1"
+                    keyTimes="0;1"
+                  />
+                  <circle
+                    className="focus-sat-circle draw-line"
+                    cx="0"
+                    cy="0"
+                    r={satellite.r}
+                    fill="var(--bg)"
+                    fillOpacity="0.82"
+                    stroke="var(--fg-faint)"
+                    strokeWidth="1"
+                    style={{ transitionDelay: satellite.delay }}
+                  />
+                  <FocusSatelliteText satellite={satellite} x={0} y={0} />
+                </g>
+              </g>
+            </g>
+          </g>
         </g>
       ))}
     </svg>
