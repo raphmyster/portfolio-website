@@ -481,14 +481,13 @@ function Gallery() {
     const startCycle = () => {
       if (lightboxOpenedRef.current) return;
       let t = 0;
-      for (let cycle = 0; cycle < 2; cycle++) {
+      for (let cycle = 0; cycle < 1; cycle++) {
         order.forEach((slug, i) => {
           schedule(() => flipOn(slug), t + i * FLIP_MS);
         });
         t += order.length * FLIP_MS + HOLD_MS;
         schedule(flipAllOff, t);
         t += FLIP_MS;
-        if (cycle < 1) t += HOLD_MS;
       }
     };
 
