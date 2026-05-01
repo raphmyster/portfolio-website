@@ -123,7 +123,7 @@ const PROJECTS = [
     code: "OCS-01", title: "One Click Saver", type: "Chrome Extension", glyph: "extension",
     image: "assets/One_Click_Saver_Green.png?v=20260424-project-images-refresh-3",
     desc: "A Chrome extension that captures FF&E product data from manufacturer websites in a single click. Built to solve a workflow I watched designers struggle with: pulling specs into spreadsheets one field at a time.",
-    link: "#", linkLabel: "Chrome Web Store",
+    metaLabel: "Chrome Extension",
   },
   {
     code: "RFI-02", title: "RFI Auto-Logger", type: "Automation Pipeline", glyph: "automation",
@@ -135,19 +135,19 @@ const PROJECTS = [
     code: "SDP-03", title: "Sidepad", type: "Chrome Extension", glyph: "sidepanel",
     image: "assets/Sidepad_Green.png?v=20260424-project-images-refresh-3",
     desc: "A side panel companion for capturing and structuring AI-generated content from any conversation or webpage. Saves locally as markdown, with no cloud and no account.",
-    link: "#", linkLabel: "Chrome Web Store",
+    link: "https://sidepad.app", linkLabel: "sidepad.app",
   },
   {
     code: "LTP-04", title: "Litepad", type: "macOS App", glyph: "macapp",
     image: "assets/Litepad_Green.png?v=20260424-project-images-refresh-3",
     desc: "A native markdown reader for Mac, like Adobe Reader for .md files. Forked from MarkEdit and repositioned for the growing audience receiving markdown from AI tools.",
-    link: "#", linkLabel: "Mac App Store",
+    link: "https://litepad.app", linkLabel: "litepad.app",
   },
   {
     code: "RIO-05", title: "Ride It Out", type: "iOS App", glyph: "ios",
     image: "assets/Ride It Out_Green.png?v=20260424-project-images-refresh-3",
     desc: "A native iOS app that guides users through structured anxiety management exercises. Designed to be usable in moments of high stress. Clean, calm, and useful within seconds of opening.",
-    link: "#", linkLabel: "App Store",
+    link: "https://rideitout.app", linkLabel: "rideitout.app",
   },
   {
     code: "WIP-06", title: "What's Next", type: "In Progress", glyph: "wip",
